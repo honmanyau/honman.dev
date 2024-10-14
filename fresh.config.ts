@@ -1,3 +1,9 @@
 import { defineConfig } from "$fresh/server.ts";
 
-export default defineConfig({});
+import denoKvAuthPlugin from "./plugins/deno-kv-oauth.ts";
+
+export default defineConfig({
+    plugins: [
+        denoKvAuthPlugin,
+    ],
+});
