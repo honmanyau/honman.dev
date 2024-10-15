@@ -11,7 +11,7 @@ import {
 export function createSignInRedirectResponse(url: URL): Response {
     const encodedPathname = `/${SIGN_IN_PAGE_PATHNAME}` === url.pathname
         ? "/"
-        : encodeURIComponent(url.pathname);
+        : url.pathname;
 
     return new Response(null, {
         status: 302,
