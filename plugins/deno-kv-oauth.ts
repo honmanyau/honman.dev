@@ -1,9 +1,7 @@
 import type { Plugin } from "$fresh/server.ts";
 import { createGitHubOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
 
-const { signIn, handleCallback, signOut, getSessionId } = createHelpers(
-    createGitHubOAuthConfig(),
-);
+export const gitHubHelpers = createHelpers(createGitHubOAuthConfig());
 
 export default {
     name: "kv-oauth",
@@ -11,27 +9,27 @@ export default {
         {
             path: "/sign-in-github",
             async handler(req) {
-                return await signIn(req);
+                return await gitHubHelpers.signIn(req);
             },
         },
         {
             path: "/callback",
             async handler(req) {
-                const { response } = await handleCallback(req);
+                const x = await gitHubHelpers.handleCallback(req);
 
-                return response;
+                return x.response;
             },
         },
         {
             path: "/sign-out",
             async handler(req) {
-                return await signOut(req);
+                return await gitHubHelpers.signOut(req);
             },
         },
         {
             path: "/protected",
             async handler(req) {
-                return await getSessionId(req) === undefined
+                return await gitHubHelpers.getSessionId(req) === undefined
                     ? new Response("Unauthorized", { status: 401 })
                     : new Response("You are allowed");
             },
