@@ -27,6 +27,7 @@
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
     "@std/expect": "jsr:@std/expect@^1.0.5",
+    "@std/testing": "jsr:@std/testing@^1.0.3",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/"
   },
