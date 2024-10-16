@@ -1,12 +1,12 @@
-import type { RouteContext } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
 import { basename } from "$std/path/basename.ts";
 
 import { SIGN_IN_PAGE_PATHNAME } from "../utils/constants.ts";
 
 validatePathname();
 
-export default async function SignIn(req: Request, ctx: RouteContext) {
-    const successUrl = new URL(req.url).searchParams.get("redirect");
+export default function SignIn(props: PageProps) {
+    const successUrl = props.url.searchParams.get("redirect");
     const href = successUrl
         ? `/sign-in-github?success_url=${successUrl}`
         : `/sign-in-github`;
