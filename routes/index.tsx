@@ -1,5 +1,6 @@
 import type { PageProps } from "$fresh/server.ts";
 import { useSignal } from "@preact/signals";
+
 import Counter from "../islands/Counter.tsx";
 
 export default function Home(props: PageProps) {
