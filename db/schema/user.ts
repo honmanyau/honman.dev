@@ -36,7 +36,7 @@ export const userTable = pgTable("user", {
 }, (table) => ({
     checkConstraint: check(
         "username_check",
-        sql`LENGTH(${table.username}) > 2 AND username ~ '^[a-z0-9\-]*$'`,
+        sql`LENGTH(${table.username}) > 2 AND username ~ '^[a-z0-9][a-z0-9\-]*[a-z0-9]$'`,
     ),
 }));
 

@@ -15,6 +15,13 @@
       "when": 1729254937109,
       "tag": "0001_update_user_table_username_constraint",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729255250408,
+      "tag": "0002_update_user_table_username_constraint",
+      "breakpoints": true
     }
   ]
 }
