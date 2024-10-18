@@ -21,15 +21,15 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "@/": "./",
-    
     "$fresh/": "https://deno.land/x/fresh@1.7.2/",
     "$std/": "https://deno.land/std@0.216.0/",
+    "@/": "./",
     "@deno/kv-oauth": "jsr:@deno/kv-oauth@^0.11.0",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
     "@std/expect": "jsr:@std/expect@^1.0.5",
     "@std/testing": "jsr:@std/testing@^1.0.3",
+    "postgres": "npm:postgres@^3.4.4",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/",
     "zod": "npm:zod@^3.23.8"
@@ -37,5 +37,6 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
-  }
+  },
+  "nodeModulesDir": "auto"
 }
