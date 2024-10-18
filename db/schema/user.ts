@@ -17,7 +17,9 @@ export enum OAuthProvider {
     GITHUB = "github",
 }
 
-export const oauthProviderEnum = pgEnum(
+const MAX_USERNAME_LENGTH = 36;
+
+export const oauthProviderPgEnum = pgEnum(
     "oauth_provider",
     Object.values(OAuthProvider) as [OAuthProvider, ...OAuthProvider[]],
 );
@@ -29,19 +31,21 @@ export const userTable = pgTable("user", {
         sql`CURRENT_TIMESTAMP`
     ),
     oauthId: varchar({ length: 255 }).notNull(),
-    oauthProvider: oauthProviderEnum().notNull(),
-    username: varchar({ length: 32 }).unique().notNull(),
+    oauthProvider: oauthProviderPgEnum().notNull(),
+    username: varchar({ length: MAX_USERNAME_LENGTH }).unique().notNull(),
     displayName: varchar({ length: 255 }),
     email: varchar({ length: 255 }).unique(),
-}, (table) => ({
+}, () => ({
     checkConstraint: check(
         "username_check",
-        sql`LENGTH(${table.username}) > 2 AND username ~ '^[a-z0-9][a-z0-9\-]*[a-z0-9]$'`,
+        sql`username ~ '^[a-z0-9][a-z0-9\-]*[a-z0-9]$'`,
     ),
 }));
 
 export const insertUserSchema = createInsertSchema(userTable, {
-    username: z.string().min(2).max(36),
+    username: z.string().min(2).max(MAX_USERNAME_LENGTH).regex(
+        /^[a-z0-9][a-z0-9\-]*[a-z0-9]$/,
+    ),
     email: z.string().email().optional(),
 }).omit({
     id: true,
