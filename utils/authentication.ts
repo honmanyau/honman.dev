@@ -1,5 +1,9 @@
 import type { RouteContext } from "$fresh/server.ts";
 
+export enum OAuthProvider {
+    GITHUB = "github",
+}
+
 /**
  * Determine whether or not a user is authenticated based on
  * {@link RouteContext}.
