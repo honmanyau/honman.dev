@@ -36,15 +36,17 @@ export const userTable = pgTable("user", {
 }, (table) => ({
     checkConstraint: check(
         "username_check",
-        sql`LENGTH(${table.username}) > 2`,
+        sql`LENGTH(${table.username}) > 2 AND username ~ '^[a-z0-9\-]*$'`,
     ),
 }));
 
 export const insertUserSchema = createInsertSchema(userTable, {
+    username: z.string().min(2).max(36),
     email: z.string().email().optional(),
 }).omit({
     id: true,
     created: true,
+    updated: true,
 });
 
 export const selectUserSchema = createSelectSchema(userTable);
