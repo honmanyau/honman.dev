@@ -1,6 +1,7 @@
 import type { Plugin } from "$fresh/server.ts";
 import { createGitHubOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
 
+import { insertUser } from "@/db/repository/user.ts";
 import { getOauthUser } from "@/utils/user.ts";
 
 export const gitHubHelpers = createHelpers(createGitHubOAuthConfig());
@@ -19,11 +20,18 @@ export default {
             async handler(req) {
                 const payload = await gitHubHelpers.handleCallback(req);
 
-                // TODO|Honman Yau|2024-10-18
-                // Write to database.
-                const user = await getOauthUser(
-                    payload.tokens.accessToken,
-                );
+                const { id, username, name, email, provider } =
+                    await getOauthUser(
+                        payload.tokens.accessToken,
+                    );
+
+                await insertUser({
+                    oauthId: String(id),
+                    oauthProvider: provider,
+                    username,
+                    displayName: name ? name : username,
+                    email: email ? email : undefined,
+                });
 
                 return payload.response;
             },
