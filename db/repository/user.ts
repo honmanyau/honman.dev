@@ -11,6 +11,8 @@ import {
 export async function insertUser(
     userData: InsertUserSchema,
 ) {
+    userData.username = userData.username.toLowerCase();
+
     const value = insertUserSchema.parse(userData);
     const user = await db.insert(userTable).values(value).returning();
 
