@@ -1,0 +1,1 @@
+ALTER TABLE "user" ADD CONSTRAINT "oauth_composite_key" UNIQUE("oauthId","oauthProvider");

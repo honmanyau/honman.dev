@@ -4,6 +4,7 @@ import {
     pgEnum,
     pgTable,
     timestamp,
+    unique,
     uuid,
     varchar,
 } from "drizzle-orm/pg-core";
@@ -17,8 +18,8 @@ export enum OAuthProvider {
     GITHUB = "github",
 }
 
-const MIN_USERNAME_LENGTH = 2;
-const MAX_USERNAME_LENGTH = 36;
+export const MIN_USERNAME_LENGTH = 2;
+export const MAX_USERNAME_LENGTH = 36;
 
 export const oauthProviderPgEnum = pgEnum(
     "oauth_provider",
@@ -36,7 +37,11 @@ export const userTable = pgTable("user", {
     username: varchar({ length: MAX_USERNAME_LENGTH }).unique().notNull(),
     displayName: varchar({ length: 255 }),
     email: varchar({ length: 255 }).unique(),
-}, () => ({
+}, (table) => ({
+    uniqueConstraint: unique("oauth_composite_key").on(
+        table.oauthId,
+        table.oauthProvider,
+    ),
     checkConstraint: check(
         "username_check",
         sql`username ~ '^[a-z0-9][a-z0-9\-]*[a-z0-9]$'`,
