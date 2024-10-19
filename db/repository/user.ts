@@ -23,16 +23,24 @@ export async function insertUser(
         insertUserSchema.parse(userData)
     );
 
-    const user = await handlePostgresErrors(() =>
+    const users = await handlePostgresErrors(() =>
         db.insert(userTable).values(value).returning()
     );
 
-    return user[0];
+    return users[0];
 }
 
 /**
  * Get a user by `id`.
  */
 export async function getUserById(id: string) {
-    return db.select().from(userTable).where(eq(userTable.id, id));
+    const users = await handlePostgresErrors(() =>
+        db.select().from(userTable).where(eq(userTable.id, id))
+    );
+
+    if (users.length === 0) {
+        throw new Deno.errors.NotFound();
+    }
+
+    return users[0];
 }
