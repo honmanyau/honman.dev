@@ -19,10 +19,8 @@ describe("User repository", () => {
         it("inserts well-formed user data correctly", async () => {
             const userData = generateUserData();
 
-            const result = await insertUser(userData);
-            const user = result[0];
+            const user = await insertUser(userData);
 
-            expect(result).toHaveLength(1);
             expect(user.id).toBeDefined();
             expect(user.created).toBeInstanceOf(Date);
             expect(user.created).toEqual(user.updated);
@@ -103,7 +101,7 @@ describe("User repository", () => {
             await insertUser(userData1);
 
             expect(insertUser(userData2)).rejects.toThrow(
-                'duplicate key value violates unique constraint "oauth_composite_key"',
+                Deno.errors.AlreadyExists,
             );
         });
     });

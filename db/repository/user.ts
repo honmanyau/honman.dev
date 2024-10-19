@@ -1,5 +1,4 @@
 import { eq } from "drizzle-orm";
-import { ZodError } from "npm:zod";
 
 import { db } from "@/db/drizzle.ts";
 import {
@@ -7,6 +6,10 @@ import {
     insertUserSchema,
     userTable,
 } from "@/db/schema/user.ts";
+import {
+    handlePostgresErrors,
+    handleZodParsingErrors,
+} from "@/utils/error-handling.ts";
 
 /**
  * Insert a new user into the `user` table and return the inserted user.
@@ -16,21 +19,15 @@ export async function insertUser(
 ) {
     userData.username = userData.username.toLowerCase();
 
-    let value: InsertUserSchema;
+    const value = handleZodParsingErrors(() =>
+        insertUserSchema.parse(userData)
+    );
 
-    try {
-        value = insertUserSchema.parse(userData);
-    } catch (error) {
-        if (error instanceof ZodError) {
-            throw new Deno.errors.InvalidData();
-        }
+    const user = await handlePostgresErrors(() =>
+        db.insert(userTable).values(value).returning()
+    );
 
-        throw error;
-    }
-
-    const user = await db.insert(userTable).values(value).returning();
-
-    return user;
+    return user[0];
 }
 
 /**
