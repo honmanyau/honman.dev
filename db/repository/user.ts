@@ -5,6 +5,7 @@ import {
     type InsertUserSchema,
     insertUserSchema,
     OAuthProvider,
+    type UpdateUserSchema,
     userTable,
 } from "@/db/schema/user.ts";
 import {
@@ -60,6 +61,22 @@ export async function getUserByOauthId(
                 eq(userTable.oauthProvider, oauthProvider),
             ),
         )
+    );
+
+    if (users.length === 0) {
+        throw new Deno.errors.NotFound();
+    }
+
+    return users[0];
+}
+
+export async function updateUser(
+    id: string,
+    userData: Partial<UpdateUserSchema>,
+) {
+    const users = await handlePostgresErrors(() =>
+        db.update(userTable).set(userData).where(eq(userTable.id, id))
+            .returning()
     );
 
     if (users.length === 0) {

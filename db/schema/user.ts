@@ -13,9 +13,12 @@ import { z } from "zod";
 
 export type InsertUserSchema = z.infer<typeof insertUserSchema>;
 export type SelectUserSchema = z.infer<typeof selectUserSchema>;
+export type UpdateUserSchema = z.infer<typeof updateUserSchema>;
 
 export enum OAuthProvider {
+    FACEBOOK = "facebook",
     GITHUB = "github",
+    GOOGLE = "google",
 }
 
 export const MIN_USERNAME_LENGTH = 2;
@@ -28,10 +31,10 @@ export const oauthProviderPgEnum = pgEnum(
 
 export const userTable = pgTable("user", {
     id: uuid().defaultRandom().primaryKey(),
-    created: timestamp().defaultNow().notNull(),
-    updated: timestamp().defaultNow().notNull().$onUpdate(() =>
-        sql`CURRENT_TIMESTAMP`
-    ),
+    created: timestamp({ precision: 6, withTimezone: true })
+        .defaultNow().notNull(),
+    updated: timestamp({ precision: 6, withTimezone: true })
+        .defaultNow().notNull().$onUpdate(() => new Date()),
     oauthId: varchar({ length: 255 }).notNull(),
     oauthProvider: oauthProviderPgEnum().notNull(),
     username: varchar({ length: MAX_USERNAME_LENGTH }).unique().notNull(),
@@ -61,3 +64,8 @@ export const insertUserSchema = createInsertSchema(userTable, {
 });
 
 export const selectUserSchema = createSelectSchema(userTable);
+
+export const updateUserSchema = insertUserSchema.omit({
+    oauthId: true,
+    oauthProvider: true,
+});

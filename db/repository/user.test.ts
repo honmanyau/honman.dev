@@ -6,6 +6,7 @@ import {
     getUserById,
     getUserByOauthId,
     insertUser,
+    updateUser,
 } from "@/db/repository/user.ts";
 import {
     type InsertUserSchema,
@@ -22,6 +23,7 @@ describe("User repository", () => {
     describe("insertUser()", () => {
         it("inserts well-formed user data correctly", async () => {
             const userData = generateUserData();
+
             const user = await insertUser(userData);
 
             expect(user.id).toBeDefined();
@@ -46,7 +48,7 @@ describe("User repository", () => {
             );
         });
 
-        it(`throws an InvalidData error if username contains more than ${MAX_USERNAME_LENGTH} characters`, () => {
+        it(`throws an InvalidData error if username contains more than ${MIN_USERNAME_LENGTH} characters`, () => {
             const userData = generateUserData({
                 username: "a".repeat(MAX_USERNAME_LENGTH + 1),
             });
@@ -110,8 +112,9 @@ describe("User repository", () => {
     });
 
     describe("getUserById()", () => {
-        it("returns a user with the given `id` if it exists", async () => {
+        it("returns a user with the given ID if it exists", async () => {
             const userData = generateUserData();
+
             const { id } = await insertUser(userData);
             const user = await getUserById(id);
 
@@ -133,7 +136,7 @@ describe("User repository", () => {
     });
 
     describe("getUserByOauthId()", () => {
-        it("returns a user with the given `id` if it exists", async () => {
+        it("returns a user with the given OAuth ID and provider if it exists", async () => {
             const userData = generateUserData();
             const { id } = await insertUser(userData);
             const user = await getUserByOauthId(
@@ -158,6 +161,44 @@ describe("User repository", () => {
                 OAuthProvider.GITHUB,
                 oauthId,
             )).rejects.toThrow(Deno.errors.NotFound);
+        });
+    });
+
+    describe("updateUser()", () => {
+        it("updates the data of a user's data with the given ID correctly", async () => {
+            const userData = generateUserData();
+            const newUsername = crypto.randomUUID();
+            const newUserData = {
+                username: newUsername,
+                displayName: `Maya the Serpent ${newUsername}`,
+                email: `${newUsername}@unscalable.com.au`,
+            };
+
+            const user = await insertUser(userData);
+            const updatedUser = await updateUser(user.id, newUserData);
+
+            expect(updatedUser.id).toBe(user.id);
+            expect(updatedUser.oauthId).toBe(user.oauthId);
+            expect(updatedUser.oauthProvider).toBe(user.oauthProvider);
+
+            expect(updatedUser.updated).not.toEqual(updatedUser.created);
+            expect(updatedUser.username).toBe(newUserData.username);
+            expect(updatedUser.displayName).toBe(newUserData.displayName);
+            expect(updatedUser.email).toBe(newUserData.email);
+        });
+
+        it("throws a NotFound error if the user does not exist", () => {
+            const id = crypto.randomUUID();
+            const newUsername = crypto.randomUUID();
+            const newUserData = {
+                username: newUsername,
+                displayName: `Maya the Serpent ${newUsername}`,
+                email: `${newUsername}@unscalable.com.au`,
+            };
+
+            expect(updateUser(id, newUserData)).rejects.toThrow(
+                Deno.errors.NotFound,
+            );
         });
     });
 });

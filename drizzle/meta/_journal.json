@@ -36,6 +36,13 @@
       "when": 1729300673519,
       "tag": "0004_update_user_table_add_oauth_unique_constraint",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1729346239631,
+      "tag": "0005_update_user_table_timestamp_columns_with_timezone",
+      "breakpoints": true
     }
   ]
 }
