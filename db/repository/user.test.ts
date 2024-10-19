@@ -40,7 +40,9 @@ describe("User repository", () => {
                 username: "a".repeat(MIN_USERNAME_LENGTH - 1),
             });
 
-            expect(insertUser(userData)).rejects.toThrow();
+            expect(insertUser(userData)).rejects.toThrow(
+                Deno.errors.InvalidData,
+            );
         });
 
         it(`throws an error if username contains more than ${MAX_USERNAME_LENGTH} characters`, () => {
@@ -48,31 +50,41 @@ describe("User repository", () => {
                 username: "a".repeat(MAX_USERNAME_LENGTH + 1),
             });
 
-            expect(insertUser(userData)).rejects.toThrow();
+            expect(insertUser(userData)).rejects.toThrow(
+                Deno.errors.InvalidData,
+            );
         });
 
         it("throws an error if username contains invalid characters", () => {
             const userData = generateUserData({ username: "aya-" });
 
-            expect(insertUser(userData)).rejects.toThrow();
+            expect(insertUser(userData)).rejects.toThrow(
+                Deno.errors.InvalidData,
+            );
         });
 
         it("throws an error if username begins with a hyphen", () => {
             const userData = generateUserData({ username: "-aya" });
 
-            expect(insertUser(userData)).rejects.toThrow();
+            expect(insertUser(userData)).rejects.toThrow(
+                Deno.errors.InvalidData,
+            );
         });
 
         it("throws an error if username ends with a hyphen", () => {
             const userData = generateUserData({ username: "aya-" });
 
-            expect(insertUser(userData)).rejects.toThrow();
+            expect(insertUser(userData)).rejects.toThrow(
+                Deno.errors.InvalidData,
+            );
         });
 
         it("throws an error if username ends with a hyphen", () => {
             const userData = generateUserData({ username: "aya-" });
 
-            expect(insertUser(userData)).rejects.toThrow();
+            expect(insertUser(userData)).rejects.toThrow(
+                Deno.errors.InvalidData,
+            );
         });
 
         it("throws an error if email is malformed", () => {

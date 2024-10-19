@@ -1,3 +1,6 @@
+import { eq } from "drizzle-orm";
+import { ZodError } from "npm:zod";
+
 import { db } from "@/db/drizzle.ts";
 import {
     type InsertUserSchema,
@@ -13,8 +16,26 @@ export async function insertUser(
 ) {
     userData.username = userData.username.toLowerCase();
 
-    const value = insertUserSchema.parse(userData);
+    let value: InsertUserSchema;
+
+    try {
+        value = insertUserSchema.parse(userData);
+    } catch (error) {
+        if (error instanceof ZodError) {
+            throw new Deno.errors.InvalidData();
+        }
+
+        throw error;
+    }
+
     const user = await db.insert(userTable).values(value).returning();
 
     return user;
+}
+
+/**
+ * Get a user by `id`.
+ */
+export async function getUserById(id: string) {
+    return db.select().from(userTable).where(eq(userTable.id, id));
 }
