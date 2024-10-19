@@ -1,6 +1,6 @@
 import { FreshContext } from "$fresh/server.ts";
 
-import { gitHubHelpers } from "../plugins/deno-kv-oauth.ts";
+import { gitHubHelpers } from "@/plugins/deno-kv-oauth.ts";
 
 interface State {
     session: string | null;

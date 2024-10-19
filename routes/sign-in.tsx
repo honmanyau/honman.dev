@@ -1,7 +1,7 @@
 import type { PageProps } from "$fresh/server.ts";
 import { basename } from "$std/path/basename.ts";
 
-import { SIGN_IN_PAGE_PATHNAME } from "../utils/constants.ts";
+import { SIGN_IN_PAGE_PATHNAME } from "@/utils/constants.ts";
 
 validatePathname();
 
