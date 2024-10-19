@@ -2,7 +2,11 @@ import { expect } from "@std/expect/expect";
 import { afterAll, describe, it } from "jsr:@std/testing/bdd";
 
 import { db } from "@/db/drizzle.ts";
-import { getUserById, insertUser } from "@/db/repository/user.ts";
+import {
+    getUserById,
+    getUserByOauthId,
+    insertUser,
+} from "@/db/repository/user.ts";
 import {
     type InsertUserSchema,
     MAX_USERNAME_LENGTH,
@@ -121,10 +125,39 @@ describe("User repository", () => {
             expect(user.email).toBe(userData.email);
         });
 
-        it("throws a NotFound error if the user does not exist", async () => {
+        it("throws a NotFound error if the user does not exist", () => {
             const id = crypto.randomUUID();
 
             expect(getUserById(id)).rejects.toThrow(Deno.errors.NotFound);
+        });
+    });
+
+    describe("getUserByOauthId()", () => {
+        it("returns a user with the given `id` if it exists", async () => {
+            const userData = generateUserData();
+            const { id } = await insertUser(userData);
+            const user = await getUserByOauthId(
+                userData.oauthProvider,
+                userData.oauthId,
+            );
+
+            expect(user.id).toBe(id);
+            expect(user.created).toBeInstanceOf(Date);
+            expect(user.updated).toBeInstanceOf(Date);
+            expect(user.oauthId).toBe(userData.oauthId);
+            expect(user.oauthProvider).toBe(userData.oauthProvider);
+            expect(user.username).toBe(userData.username);
+            expect(user.displayName).toBe(userData.displayName);
+            expect(user.email).toBe(userData.email);
+        });
+
+        it("throws a NotFound error if the user does not exist", () => {
+            const oauthId = String(Math.round(Math.random() * 1E9));
+
+            expect(getUserByOauthId(
+                OAuthProvider.GITHUB,
+                oauthId,
+            )).rejects.toThrow(Deno.errors.NotFound);
         });
     });
 });
