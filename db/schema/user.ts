@@ -17,6 +17,7 @@ export enum OAuthProvider {
     GITHUB = "github",
 }
 
+const MIN_USERNAME_LENGTH = 2;
 const MAX_USERNAME_LENGTH = 36;
 
 export const oauthProviderPgEnum = pgEnum(
@@ -43,9 +44,10 @@ export const userTable = pgTable("user", {
 }));
 
 export const insertUserSchema = createInsertSchema(userTable, {
-    username: z.string().min(2).max(MAX_USERNAME_LENGTH).regex(
-        /^[a-z0-9][a-z0-9\-]*[a-z0-9]$/,
-    ),
+    username: z.string().min(MIN_USERNAME_LENGTH).max(MAX_USERNAME_LENGTH)
+        .regex(
+            /^[a-z0-9][a-z0-9\-]*[a-z0-9]$/,
+        ),
     email: z.string().email().optional(),
 }).omit({
     id: true,
