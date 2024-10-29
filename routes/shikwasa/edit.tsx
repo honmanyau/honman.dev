@@ -53,6 +53,7 @@ export default async function Create(_req: Request, ctx: RouteContext) {
 		<>
 			<head>
 				<title>Edit post</title>
+				<meta name="robots" content="noindex, nofollow" />
 			</head>
 
 			<main>

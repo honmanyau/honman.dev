@@ -10,6 +10,7 @@ export default async function Shikwasa(_req: Request, _ctx: RouteContext) {
 		<>
 			<head>
 				<title>Shikwasa</title>
+				<meta name="robots" content="noindex, nofollow" />
 			</head>
 
 			<main style="font-family: monospace">

@@ -36,6 +36,7 @@ export default function Shikwasa() {
 		<>
 			<head>
 				<title>Create post</title>
+				<meta name="robots" content="noindex, nofollow" />
 			</head>
 			<main>
 				<PostForm />
