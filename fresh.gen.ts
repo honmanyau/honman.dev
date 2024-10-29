@@ -4,6 +4,7 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $api_posts_delete from "./routes/api/posts/delete.ts";
 import * as $index from "./routes/index.tsx";
 import * as $shikwasa_middleware from "./routes/shikwasa/_middleware.ts";
 import * as $shikwasa_create from "./routes/shikwasa/create.tsx";
@@ -17,6 +18,7 @@ const manifest = {
 	routes: {
 		"./routes/_404.tsx": $_404,
 		"./routes/_app.tsx": $_app,
+		"./routes/api/posts/delete.ts": $api_posts_delete,
 		"./routes/index.tsx": $index,
 		"./routes/shikwasa/_middleware.ts": $shikwasa_middleware,
 		"./routes/shikwasa/create.tsx": $shikwasa_create,

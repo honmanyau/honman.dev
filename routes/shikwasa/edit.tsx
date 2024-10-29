@@ -3,26 +3,36 @@ import { Handlers, type RouteContext } from "$fresh/server.ts";
 import { getPost, updatePost } from "@/db/repository/post.ts";
 import type { Post, PostFormat } from "@/db/schema/post.ts";
 import { PostForm } from "@/islands/PostForm.tsx";
+import { getRequiredFormValue } from "@/utils/form.ts";
 import { marked, sanitizeHtml } from "@/utils/input-processing.ts";
 
 export const handler: Handlers = {
 	async POST(req, _ctx) {
 		const form = await req.formData();
-		const contentMarkdown = getRequiredFormValue(form, "contentMarkdown");
-		const unsanitizedContentHtml = await marked.parse(contentMarkdown);
-		const contentHtml = sanitizeHtml(unsanitizedContentHtml);
+		const shouldDeletePost = !!form.get("deleteButton");
 
-		const post: Post = {
-			title: getRequiredFormValue(form, "title"),
-			published: getRequiredFormValue(form, "published"),
-			tags: getRequiredFormValue(form, "tags").split(","),
-			genre: getRequiredFormValue(form, "genre") as PostFormat,
-			permalink: getRequiredFormValue(form, "permalink"),
-			contentMarkdown,
-			contentHtml,
-		};
+		if (shouldDeletePost) {
+			// await deletePost(getRequiredFormValue(form, "permalink"));
+		} else {
+			const contentMarkdown = getRequiredFormValue(
+				form,
+				"contentMarkdown",
+			);
+			const unsanitizedContentHtml = await marked.parse(contentMarkdown);
+			const contentHtml = sanitizeHtml(unsanitizedContentHtml);
 
-		await updatePost(post);
+			const post: Post = {
+				title: getRequiredFormValue(form, "title"),
+				published: getRequiredFormValue(form, "published"),
+				tags: getRequiredFormValue(form, "tags").split(","),
+				genre: getRequiredFormValue(form, "genre") as PostFormat,
+				permalink: getRequiredFormValue(form, "permalink"),
+				contentMarkdown,
+				contentHtml,
+			};
+
+			await updatePost(post);
+		}
 
 		const headers = new Headers({ "Location": "/shikwasa" });
 
@@ -50,14 +60,4 @@ export default async function Create(_req: Request, ctx: RouteContext) {
 			</main>
 		</>
 	);
-}
-
-function getRequiredFormValue(form: FormData, key: keyof Post) {
-	const value = form.get(key);
-
-	if (value === null) {
-		throw new Error(`Missing required form data: ${key}.`);
-	}
-
-	return value.toString();
 }

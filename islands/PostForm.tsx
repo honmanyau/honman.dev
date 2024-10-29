@@ -80,7 +80,12 @@ export function PostForm(props: Props) {
                     value={props.post?.contentMarkdown}
                 />
             </p>
-            <button type="submit">Create post</button>
+            <button type="submit" name="createButton" value="true">
+                {editingExistingPost ? "Edit" : "Create"} post
+            </button>
+            <button type="submit" formaction="/api/posts/delete">
+                Delete post
+            </button>
         </form>
     );
 }

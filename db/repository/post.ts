@@ -45,3 +45,9 @@ export function updatePost(data: Post) {
 
 	return kv.set(key, post);
 }
+
+export async function deletePost(permalink: string) {
+	const key = [POSTS_KEY, permalink];
+
+	return kv.delete(key);
+}

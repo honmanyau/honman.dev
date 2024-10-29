@@ -3,6 +3,7 @@ import { Handlers } from "$fresh/server.ts";
 import { createPost } from "@/db/repository/post.ts";
 import type { Post, PostFormat } from "@/db/schema/post.ts";
 import { PostForm } from "@/islands/PostForm.tsx";
+import { getRequiredFormValue } from "@/utils/form.ts";
 import { marked, sanitizeHtml } from "@/utils/input-processing.ts";
 
 export const handler: Handlers = {
@@ -41,14 +42,4 @@ export default function Shikwasa() {
 			</main>
 		</>
 	);
-}
-
-function getRequiredFormValue(form: FormData, key: keyof Post) {
-	const value = form.get(key);
-
-	if (value === null) {
-		throw new Error(`Missing required form data: ${key}.`);
-	}
-
-	return value.toString();
 }
