@@ -14,6 +14,7 @@ export const PostSchema = z.object({
 	tags: z.array(z.string()).default([]),
 	genre: z.nativeEnum(PostFormat).default(PostFormat.POST),
 	permalink: z.string(),
+	contentMarkdown: z.string(),
 	contentHtml: z.string(),
 });
 

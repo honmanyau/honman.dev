@@ -2,10 +2,15 @@ import { Handlers } from "$fresh/server.ts";
 
 import { createPost } from "@/db/repository/post.ts";
 import type { Post, PostFormat } from "@/db/schema/post.ts";
+import { PostForm } from "@/islands/PostForm.tsx";
+import { marked, sanitizeHtml } from "@/utils/input-processing.ts";
 
 export const handler: Handlers = {
 	async POST(req, _ctx) {
 		const form = await req.formData();
+		const contentMarkdown = getRequiredFormValue(form, "contentMarkdown");
+		const unsanitizedContentHtml = await marked.parse(contentMarkdown);
+		const contentHtml = sanitizeHtml(unsanitizedContentHtml);
 
 		const post: Post = {
 			title: getRequiredFormValue(form, "title"),
@@ -13,7 +18,8 @@ export const handler: Handlers = {
 			tags: getRequiredFormValue(form, "tags").split(","),
 			genre: getRequiredFormValue(form, "genre") as PostFormat,
 			permalink: getRequiredFormValue(form, "permalink"),
-			contentHtml: getRequiredFormValue(form, "contentHtml"),
+			contentMarkdown,
+			contentHtml,
 		};
 
 		await createPost(post);
@@ -30,50 +36,8 @@ export default function Shikwasa() {
 			<head>
 				<title>Create post</title>
 			</head>
-
 			<main>
-				<form method="post">
-					<label>
-						Title:
-						<input type="title" name="title" value="" />
-					</label>
-
-					<label>
-						Published:
-						<input type="published" name="published" value="" />
-					</label>
-
-					<label>
-						Tags:
-						<input
-							type="tags"
-							name="tags"
-							value=""
-							placeholder="css, javascript,o"
-						/>
-					</label>
-
-					<label>
-						Genre:
-						<input type="genre" name="genre" value="" />
-					</label>
-
-					<label>
-						Permalink:
-						<input type="permalink" name="permalink" value="" />
-					</label>
-
-					<label>
-						Content HTML:
-						<textarea
-							type="contentHtml"
-							name="contentHtml"
-							value=""
-						/>
-					</label>
-
-					<button type="submit">Create post</button>
-				</form>
+				<PostForm />
 			</main>
 		</>
 	);

@@ -10,6 +10,7 @@ import * as $shikwasa_create from "./routes/shikwasa/create.tsx";
 import * as $shikwasa_edit from "./routes/shikwasa/edit.tsx";
 import * as $shikwasa_index from "./routes/shikwasa/index.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $PostForm from "./islands/PostForm.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -24,6 +25,7 @@ const manifest = {
 	},
 	islands: {
 		"./islands/Counter.tsx": $Counter,
+		"./islands/PostForm.tsx": $PostForm,
 	},
 	baseUrl: import.meta.url,
 } satisfies Manifest;

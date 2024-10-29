@@ -2,10 +2,15 @@ import { Handlers, type RouteContext } from "$fresh/server.ts";
 
 import { getPost, updatePost } from "@/db/repository/post.ts";
 import type { Post, PostFormat } from "@/db/schema/post.ts";
+import { PostForm } from "@/islands/PostForm.tsx";
+import { marked, sanitizeHtml } from "@/utils/input-processing.ts";
 
 export const handler: Handlers = {
 	async POST(req, _ctx) {
 		const form = await req.formData();
+		const contentMarkdown = getRequiredFormValue(form, "contentMarkdown");
+		const unsanitizedContentHtml = await marked.parse(contentMarkdown);
+		const contentHtml = sanitizeHtml(unsanitizedContentHtml);
 
 		const post: Post = {
 			title: getRequiredFormValue(form, "title"),
@@ -13,7 +18,8 @@ export const handler: Handlers = {
 			tags: getRequiredFormValue(form, "tags").split(","),
 			genre: getRequiredFormValue(form, "genre") as PostFormat,
 			permalink: getRequiredFormValue(form, "permalink"),
-			contentHtml: getRequiredFormValue(form, "contentHtml"),
+			contentMarkdown,
+			contentHtml,
 		};
 
 		await updatePost(post);
@@ -40,56 +46,7 @@ export default async function Create(_req: Request, ctx: RouteContext) {
 			</head>
 
 			<main>
-				<form method="post">
-					<label>
-						Title:
-						<input type="title" name="title" value={post.title} />
-					</label>
-
-					<label>
-						Published:
-						<input
-							type="published"
-							name="published"
-							value={post.published}
-						/>
-					</label>
-
-					<label>
-						Tags:
-						<input
-							type="tags"
-							name="tags"
-							value={post.tags.join(",")}
-							placeholder="css, javascript,o"
-						/>
-					</label>
-
-					<label>
-						Genre:
-						<input type="genre" name="genre" value={post.genre} />
-					</label>
-
-					<label>
-						Permalink:
-						<input
-							type="permalink"
-							name="permalink"
-							value={post.permalink}
-						/>
-					</label>
-
-					<label>
-						Content HTML:
-						<textarea
-							type="contentHtml"
-							name="contentHtml"
-							value={post.contentHtml}
-						/>
-					</label>
-
-					<button type="submit">Edit post</button>
-				</form>
+				<PostForm post={post} />
 			</main>
 		</>
 	);
