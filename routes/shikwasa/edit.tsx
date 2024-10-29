@@ -1,6 +1,6 @@
 import { Handlers, type RouteContext } from "$fresh/server.ts";
 
-import { getPost, updatePost } from "@/db/repository/post.ts";
+import { deletePost, getPost, updatePost } from "@/db/repository/post.ts";
 import type { Post, PostFormat } from "@/db/schema/post.ts";
 import { PostForm } from "@/islands/PostForm.tsx";
 import { getRequiredFormValue } from "@/utils/form.ts";
@@ -12,7 +12,7 @@ export const handler: Handlers = {
 		const shouldDeletePost = !!form.get("deleteButton");
 
 		if (shouldDeletePost) {
-			// await deletePost(getRequiredFormValue(form, "permalink"));
+			await deletePost(getRequiredFormValue(form, "permalink"));
 		} else {
 			const contentMarkdown = getRequiredFormValue(
 				form,
