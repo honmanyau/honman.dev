@@ -9,7 +9,6 @@ import * as $shikwasa_middleware from "./routes/shikwasa/_middleware.ts";
 import * as $shikwasa_create from "./routes/shikwasa/create.tsx";
 import * as $shikwasa_edit from "./routes/shikwasa/edit.tsx";
 import * as $shikwasa_index from "./routes/shikwasa/index.tsx";
-import * as $sign_in from "./routes/sign-in.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -22,7 +21,6 @@ const manifest = {
 		"./routes/shikwasa/create.tsx": $shikwasa_create,
 		"./routes/shikwasa/edit.tsx": $shikwasa_edit,
 		"./routes/shikwasa/index.tsx": $shikwasa_index,
-		"./routes/sign-in.tsx": $sign_in,
 	},
 	islands: {
 		"./islands/Counter.tsx": $Counter,
