@@ -6,12 +6,12 @@ import { SIGN_IN_PAGE_PATHNAME } from "@/utils/constants.ts";
 validatePathname();
 
 export default function SignIn(props: PageProps) {
-    const successUrl = props.url.searchParams.get("redirect");
-    const href = successUrl
-        ? `/sign-in-github?success_url=${successUrl}`
-        : `/sign-in-github`;
+	const successUrl = props.url.searchParams.get("redirect");
+	const href = successUrl
+		? `/sign-in-github?success_url=${successUrl}`
+		: `/sign-in-github`;
 
-    return <a href={href}>Sign in</a>;
+	return <a href={href}>Sign in</a>;
 }
 
 /**
@@ -19,9 +19,9 @@ export default function SignIn(props: PageProps) {
  * on its pathname.
  */
 export function validatePathname(): void {
-    const { filename } = import.meta;
+	const { filename } = import.meta;
 
-    if (!filename || (basename(filename) !== SIGN_IN_PAGE_PATHNAME + ".tsx")) {
-        throw new Error("Unexpected filename found for the sign in page!");
-    }
+	if (!filename || (basename(filename) !== SIGN_IN_PAGE_PATHNAME + ".tsx")) {
+		throw new Error("Unexpected filename found for the sign in page!");
+	}
 }

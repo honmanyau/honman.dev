@@ -4,26 +4,30 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $_middleware from "./routes/_middleware.ts";
 import * as $index from "./routes/index.tsx";
-import * as $secret from "./routes/secret.tsx";
+import * as $shikwasa_middleware from "./routes/shikwasa/_middleware.ts";
+import * as $shikwasa_create from "./routes/shikwasa/create.tsx";
+import * as $shikwasa_edit from "./routes/shikwasa/edit.tsx";
+import * as $shikwasa_index from "./routes/shikwasa/index.tsx";
 import * as $sign_in from "./routes/sign-in.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
-  routes: {
-    "./routes/_404.tsx": $_404,
-    "./routes/_app.tsx": $_app,
-    "./routes/_middleware.ts": $_middleware,
-    "./routes/index.tsx": $index,
-    "./routes/secret.tsx": $secret,
-    "./routes/sign-in.tsx": $sign_in,
-  },
-  islands: {
-    "./islands/Counter.tsx": $Counter,
-  },
-  baseUrl: import.meta.url,
+	routes: {
+		"./routes/_404.tsx": $_404,
+		"./routes/_app.tsx": $_app,
+		"./routes/index.tsx": $index,
+		"./routes/shikwasa/_middleware.ts": $shikwasa_middleware,
+		"./routes/shikwasa/create.tsx": $shikwasa_create,
+		"./routes/shikwasa/edit.tsx": $shikwasa_edit,
+		"./routes/shikwasa/index.tsx": $shikwasa_index,
+		"./routes/sign-in.tsx": $sign_in,
+	},
+	islands: {
+		"./islands/Counter.tsx": $Counter,
+	},
+	baseUrl: import.meta.url,
 } satisfies Manifest;
 
 export default manifest;
