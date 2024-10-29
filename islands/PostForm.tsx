@@ -26,7 +26,7 @@ export function PostForm(props: Props) {
                 <label for="permalink">Permalink (readonly)</label>
                 <input
                     id="permalink"
-                    type="permalink"
+                    type="text"
                     name="permalink"
                     value={permalink}
                     readonly
@@ -36,7 +36,7 @@ export function PostForm(props: Props) {
                 <label for="title">Title</label>
                 <input
                     id="title"
-                    type="title"
+                    type="text"
                     name="title"
                     value={props.post?.title}
                     onInput={handleTitleChange}
@@ -46,7 +46,7 @@ export function PostForm(props: Props) {
                 <label for="published">Published</label>
                 <input
                     id="published"
-                    type="published"
+                    type="text"
                     name="published"
                     value={props.post?.published}
                 />
@@ -55,7 +55,7 @@ export function PostForm(props: Props) {
                 <label for="tags">Tags</label>
                 <input
                     id="tags"
-                    type="tags"
+                    type="text"
                     name="tags"
                     value={props.post?.tags.join(",")}
                     placeholder="css, javascript,o"
@@ -65,7 +65,7 @@ export function PostForm(props: Props) {
                 <label for="genre">Genre</label>
                 <input
                     id="genre"
-                    type="genre"
+                    type="text"
                     name="genre"
                     value={props.post?.genre}
                 />
@@ -74,7 +74,7 @@ export function PostForm(props: Props) {
                 <label for="contentMarkdown">Content markdown</label>
                 <textarea
                     id="contentMarkdown"
-                    type="contentMarkdown"
+                    type="text"
                     name="contentMarkdown"
                     rows={16}
                     value={props.post?.contentMarkdown}
