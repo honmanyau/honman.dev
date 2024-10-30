@@ -9,14 +9,14 @@ export enum PostFormat {
 }
 
 export const PostSchema = z.object({
-	title: z.string(),
-	description: z.string(),
+	title: z.string().min(1),
+	description: z.string().min(1),
 	published: z.string().date(),
 	tags: z.array(z.string()).default([]),
 	genre: z.nativeEnum(PostFormat).default(PostFormat.POST),
-	permalink: z.string(),
-	contentMarkdown: z.string(),
-	contentHtml: z.string(),
+	permalink: z.string().min(1).regex(/[a-zA-Z0-9\-]+/),
+	contentMarkdown: z.string().min(1),
+	contentHtml: z.string().min(1),
 });
 
 export type Post = z.infer<typeof PostSchema>;
