@@ -1,6 +1,4 @@
-import type { Post } from "@/db/schema/post.ts";
-
-export function getRequiredFormValue(form: FormData, key: keyof Post) {
+export function getRequiredFormValue(form: FormData, key: string) {
     const value = form.get(key);
 
     if (value === null) {

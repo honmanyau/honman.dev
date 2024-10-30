@@ -74,7 +74,6 @@ export function PostForm(props: Props) {
                 <label for="contentMarkdown">Content markdown</label>
                 <textarea
                     id="contentMarkdown"
-                    type="text"
                     name="contentMarkdown"
                     rows={16}
                     value={props.post?.contentMarkdown}

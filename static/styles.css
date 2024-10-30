@@ -203,10 +203,6 @@ code {
     }
 }
 
-button {
-    color: inherit;
-}
-
 button,
 [role="button"] {
     cursor: pointer;
