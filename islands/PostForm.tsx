@@ -33,6 +33,15 @@ export function PostForm(props: Props) {
                 />
             </p>
             <p>
+                <label for="published">Published</label>
+                <input
+                    id="published"
+                    type="text"
+                    name="published"
+                    value={props.post?.published}
+                />
+            </p>
+            <p>
                 <label for="title">Title</label>
                 <input
                     id="title"
@@ -43,12 +52,13 @@ export function PostForm(props: Props) {
                 />
             </p>
             <p>
-                <label for="published">Published</label>
+                <label for="description">Description</label>
                 <input
-                    id="published"
+                    id="description"
                     type="text"
-                    name="published"
-                    value={props.post?.published}
+                    name="description"
+                    value={props.post?.description}
+                    onInput={handleTitleChange}
                 />
             </p>
             <p>

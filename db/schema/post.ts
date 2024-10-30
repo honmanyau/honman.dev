@@ -10,6 +10,7 @@ export enum PostFormat {
 
 export const PostSchema = z.object({
 	title: z.string(),
+	description: z.string(),
 	published: z.string().date(),
 	tags: z.array(z.string()).default([]),
 	genre: z.nativeEnum(PostFormat).default(PostFormat.POST),
