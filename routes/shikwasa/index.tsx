@@ -18,9 +18,11 @@ export default async function Shikwasa(_req: Request, _ctx: RouteContext) {
 					{posts.map(makeListItem)}
 				</ul>
 
-				<form method="DELETE" action="/api/posts/delete-all">
+				{
+					/* <form method="POST" action="/api/posts/delete-all">
 					<button type="submit">Delete all</button>
-				</form>
+				</form> */
+				}
 			</main>
 		</>
 	);
