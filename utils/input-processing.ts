@@ -14,6 +14,7 @@ hljs.registerLanguage("css", css);
 hljs.registerLanguage("html", xml);
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("typescript", typescript);
+hljs.registerLanguage("plaintext", typescript);
 
 export { hljs };
 
