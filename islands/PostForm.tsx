@@ -2,7 +2,7 @@ import { signal } from "@preact/signals";
 import { toKebabCase } from "@std/text";
 import { createElement } from "preact";
 
-import { type Post } from "@/db/schema/post.ts";
+import { type Post, PostFormat } from "@/db/schema/post.ts";
 
 interface Props {
     post?: Post;
@@ -74,12 +74,16 @@ export function PostForm(props: Props) {
             </p>
             <p>
                 <label for="genre">Genre</label>
-                <input
-                    id="genre"
-                    type="text"
-                    name="genre"
-                    value={props.post?.genre}
-                />
+                <select id="genre" name="genre">
+                    {Object.values(PostFormat).map((genre) => (
+                        <option
+                            value={genre}
+                            selected={genre === PostFormat.POST}
+                        >
+                            {genre}
+                        </option>
+                    ))}
+                </select>
             </p>
             <p>
                 <label for="contentMarkdown">Content markdown</label>
