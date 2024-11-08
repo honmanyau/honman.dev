@@ -16,7 +16,7 @@ export async function getPost(permalink: string) {
 
 export async function indexPosts({ sort }: { sort?: "asc" | "desc" } = {}) {
 	const iterator = kv.list<Post>({ prefix: [POSTS_KEY] });
-	const posts = [];
+	const posts = await getStaticPosts();
 
 	for await (const entry of iterator) {
 		posts.push(entry.value);
@@ -31,15 +31,33 @@ export async function indexPosts({ sort }: { sort?: "asc" | "desc" } = {}) {
 		: posts.sort((a, b) => a.published.localeCompare(b.published));
 }
 
-export function createPost(data: Post) {
+export async function createPost(data: Post) {
 	const post = PostSchema.parse(data);
 	const key = [POSTS_KEY, post.permalink];
 
-	return kv.atomic().check({ key, versionstamp: null }).set(key, post)
+	const result = await kv.atomic().check({ key, versionstamp: null }).set(
+		key,
+		post,
+	)
 		.commit();
+
+	if (!result.ok) {
+		throw new Deno.errors.AlreadyExists();
+	}
+
+	return result;
 }
 
 export function updatePost(data: Post) {
+	const post = PostSchema.parse(data);
+	const key = [POSTS_KEY, post.permalink];
+
+	getPost(post.permalink);
+
+	return kv.set(key, post);
+}
+
+export function upsertPost(data: Post) {
 	const post = PostSchema.parse(data);
 	const key = [POSTS_KEY, post.permalink];
 
@@ -50,4 +68,39 @@ export async function deletePost(permalink: string) {
 	const key = [POSTS_KEY, permalink];
 
 	return kv.delete(key);
+}
+
+export async function createStaticPost(data: Post): Promise<void> {
+	const post = PostSchema.parse(data);
+
+	try {
+		await Deno.writeTextFile(
+			Deno.cwd() + `/static/posts/${post.permalink}.json`,
+			JSON.stringify(post),
+		);
+	} catch {
+		// We shouldn't be writing static files in prod (we can't with Deno
+		// on Deploy).
+	}
+}
+
+export async function getStaticPosts(): Promise<Post[]> {
+	const posts: Post[] = [];
+
+	try {
+		const files = await Deno.readDir(`${Deno.cwd()}/static/posts`);
+
+		for await (const file of files) {
+			const text = await Deno.readTextFile(
+				`${Deno.cwd()}/static/posts/${file.name}`,
+			);
+
+			posts.push(JSON.parse(text));
+		}
+	} catch {
+		// Fail silently so that we don't break the app if we somehow can't
+		// load static posts.
+	}
+
+	return posts;
 }
