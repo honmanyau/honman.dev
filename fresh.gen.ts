@@ -9,7 +9,9 @@ import * as $index from "./routes/index.tsx";
 import * as $shikwasa_middleware from "./routes/shikwasa/_middleware.ts";
 import * as $shikwasa_create from "./routes/shikwasa/create.tsx";
 import * as $shikwasa_edit from "./routes/shikwasa/edit.tsx";
+import * as $shikwasa_import from "./routes/shikwasa/import.tsx";
 import * as $shikwasa_index from "./routes/shikwasa/index.tsx";
+import * as $shikwasa_markdowns from "./routes/shikwasa/markdowns.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $PostForm from "./islands/PostForm.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -23,7 +25,9 @@ const manifest = {
 		"./routes/shikwasa/_middleware.ts": $shikwasa_middleware,
 		"./routes/shikwasa/create.tsx": $shikwasa_create,
 		"./routes/shikwasa/edit.tsx": $shikwasa_edit,
+		"./routes/shikwasa/import.tsx": $shikwasa_import,
 		"./routes/shikwasa/index.tsx": $shikwasa_index,
+		"./routes/shikwasa/markdowns.tsx": $shikwasa_markdowns,
 	},
 	islands: {
 		"./islands/Counter.tsx": $Counter,
