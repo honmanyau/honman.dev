@@ -2,7 +2,7 @@ import { signal } from "@preact/signals";
 import { toKebabCase } from "@std/text";
 import { createElement } from "preact";
 
-import type { Post } from "@/db/schema/post.ts";
+import { type Post } from "@/db/schema/post.ts";
 
 interface Props {
     post?: Post;
@@ -38,7 +38,8 @@ export function PostForm(props: Props) {
                     id="date"
                     type="text"
                     name="date"
-                    value={props.post?.date}
+                    value={props.post?.date ||
+                        new Date().toISOString().split("T")[0]}
                 />
             </p>
             <p>
@@ -68,7 +69,7 @@ export function PostForm(props: Props) {
                     type="text"
                     name="tags"
                     value={props.post?.tags.join(",")}
-                    placeholder="css, javascript,o"
+                    placeholder="css, javascript"
                 />
             </p>
             <p>
