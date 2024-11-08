@@ -10,6 +10,8 @@ export default async function Markdowns(_req: Request, _ctx: RouteContext) {
     const data: Omit<Post, "contentHtml">[] = [];
 
     for await (const file of files) {
+        if (!file.name.endsWith(".md")) continue;
+
         const text = await Deno.readTextFile(`${path}/${file.name}`);
         const frontmatter = getFrontmatter(text);
         const contentMarkdown = stripFrontmatter(text);
