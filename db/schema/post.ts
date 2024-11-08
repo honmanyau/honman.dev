@@ -11,7 +11,7 @@ export enum PostFormat {
 export const PostSchema = z.object({
 	title: z.string().min(1),
 	description: z.string().min(1),
-	published: z.string().date(),
+	date: z.string().date(),
 	tags: z.array(z.string()).default([]),
 	genre: z.nativeEnum(PostFormat).default(PostFormat.POST),
 	permalink: z.string().min(1).regex(/[a-zA-Z0-9\-]+/),

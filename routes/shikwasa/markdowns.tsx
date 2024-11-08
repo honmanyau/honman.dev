@@ -19,7 +19,7 @@ export default async function Markdowns(_req: Request, _ctx: RouteContext) {
         data.push({
             title: frontmatter.title,
             description: frontmatter.description,
-            published: frontmatter.published,
+            date: frontmatter.date,
             tags: [],
             genre: PostFormat.POST,
             permalink: toKebabCase(frontmatter.title),

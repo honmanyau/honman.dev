@@ -33,12 +33,12 @@ export function PostForm(props: Props) {
                 />
             </p>
             <p>
-                <label for="published">Published</label>
+                <label for="date">Date</label>
                 <input
-                    id="published"
+                    id="date"
                     type="text"
-                    name="published"
-                    value={props.post?.published}
+                    name="date"
+                    value={props.post?.date}
                 />
             </p>
             <p>

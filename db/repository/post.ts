@@ -27,8 +27,8 @@ export async function indexPosts({ sort }: { sort?: "asc" | "desc" } = {}) {
 	}
 
 	return sort === "desc"
-		? posts.sort((a, b) => b.published.localeCompare(a.published))
-		: posts.sort((a, b) => a.published.localeCompare(b.published));
+		? posts.sort((a, b) => b.date.localeCompare(a.date))
+		: posts.sort((a, b) => a.date.localeCompare(b.date));
 }
 
 export async function createPost(data: Post) {

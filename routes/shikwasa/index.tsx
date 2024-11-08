@@ -18,11 +18,9 @@ export default async function Shikwasa(_req: Request, _ctx: RouteContext) {
 					{posts.map(makeListItem)}
 				</ul>
 
-				{
-					/* <form method="POST" action="/api/posts/delete-all">
+				<form method="DELETE" action="/api/posts/delete-all">
 					<button type="submit">Delete all</button>
-				</form> */
-				}
+				</form>
 			</main>
 		</>
 	);
@@ -34,7 +32,7 @@ function makeListItem(post: Post) {
 			<a
 				href={`/shikwasa/edit?permalink=${post.permalink}`}
 			>
-				<b>{post.published}</b> — {post.title}
+				<b>{post.date}</b> — {post.title}
 			</a>
 		</li>
 	);

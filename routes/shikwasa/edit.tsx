@@ -24,7 +24,7 @@ export const handler: Handlers = {
 			const post: Post = {
 				title: getRequiredFormValue(form, "title"),
 				description: getRequiredFormValue(form, "description"),
-				published: getRequiredFormValue(form, "published"),
+				date: getRequiredFormValue(form, "date"),
 				tags: getRequiredFormValue(form, "tags").split(","),
 				genre: getRequiredFormValue(form, "genre") as PostFormat,
 				permalink: getRequiredFormValue(form, "permalink"),
