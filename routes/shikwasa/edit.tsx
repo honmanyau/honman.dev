@@ -59,6 +59,10 @@ export default async function Create(_req: Request, ctx: RouteContext) {
 
 			<main>
 				<PostForm post={post} />
+				<br />
+				<h2>Preview:</h2>
+				<div dangerouslySetInnerHTML={{ __html: post.contentHtml }}>
+				</div>
 			</main>
 		</>
 	);
