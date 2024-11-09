@@ -103,31 +103,31 @@ body {
             color: var(--font-color-time-dark);
         }
     }
-}
 
-[data-theme="light"] {
-    color: var(--font-color-light);
-    background-color: var(--background-color-light);
+    &[data-color-mode="light"] {
+        color: var(--font-color-light);
+        background-color: var(--background-color-light);
 
-    a:hover {
-        color: var(--font-color-light-hover);
+        a:hover {
+            color: var(--font-color-light-hover);
+        }
+
+        time {
+            color: var(--font-color-time-light);
+        }
     }
 
-    time {
-        color: var(--font-color-time-light);
-    }
-}
+    &[data-color-mode="dark"] {
+        color: var(--font-color-dark);
+        background-color: var(--background-color-dark);
 
-[data-theme="dark"] {
-    color: var(--font-color-dark);
-    background-color: var(--background-color-dark);
+        a:hover {
+            color: var(--font-color-dark-hover);
+        }
 
-    a:hover {
-        color: var(--font-color-dark-hover);
-    }
-
-    time {
-        color: var(--font-color-time-dark);
+        time {
+            color: var(--font-color-time-dark);
+        }
     }
 }
 

@@ -14,6 +14,7 @@ import * as $shikwasa_edit from "./routes/shikwasa/edit.tsx";
 import * as $shikwasa_import from "./routes/shikwasa/import.tsx";
 import * as $shikwasa_index from "./routes/shikwasa/index.tsx";
 import * as $shikwasa_markdowns from "./routes/shikwasa/markdowns.tsx";
+import * as $ColorSchemeToggle from "./islands/ColorSchemeToggle.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $PostForm from "./islands/PostForm.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -36,6 +37,7 @@ const manifest = {
 		"./routes/shikwasa/markdowns.tsx": $shikwasa_markdowns,
 	},
 	islands: {
+		"./islands/ColorSchemeToggle.tsx": $ColorSchemeToggle,
 		"./islands/Counter.tsx": $Counter,
 		"./islands/PostForm.tsx": $PostForm,
 	},
