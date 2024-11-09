@@ -3,8 +3,9 @@ declare global {
 }
 
 interface Snowy {
-    colorMode: ColorMode;
     [GLOBAL_INSTANCE_IDENTIFIER]: true;
+    colorMode: ColorMode;
+    setColorMode: (colorMode: ColorMode) => ColorMode;
 }
 
 interface InitializationOptions {
@@ -18,7 +19,7 @@ interface StorageManager {
 
 type LocalStorageKeys = "colorMode";
 
-enum ColorMode {
+export enum ColorMode {
     LIGHT = "light",
     DARK = "dark",
     SYSTEM = "system",
@@ -29,8 +30,6 @@ const DEFAULT_LOCAL_STORAGE_NAMESPACE = "snowbell";
 const GLOBAL_INSTANCE_IDENTIFIER = Symbol("snowbell");
 
 let storageManager: StorageManager;
-
-initialize();
 
 export function initialize({
     localStorageKey = DEFAULT_LOCAL_STORAGE_NAMESPACE,
@@ -43,8 +42,9 @@ export function initialize({
 
     const storedColorMode = getStoredColorMode();
     const newInstance = {
-        colorMode: storedColorMode || getPreferredColorScheme(),
         [GLOBAL_INSTANCE_IDENTIFIER]: true,
+        colorMode: storedColorMode || getPreferredColorScheme(),
+        setColorMode,
     } as const;
 
     globalThis[DEFAULT_GLOBAL_NAMESPACE] = newInstance;
@@ -102,6 +102,16 @@ function getExistingInstance() {
     }
 }
 
+function setColorMode(this: Snowy, colorMode: ColorMode): ColorMode {
+    if (colorMode === this.colorMode) return this.colorMode;
+
+    this.colorMode = colorMode;
+    storageManager.setItem("colorMode", colorMode);
+    setDocumentElementDataAttribute(this.colorMode);
+
+    return colorMode;
+}
+
 function setDocumentElementDataAttribute(colorMode: ColorMode): void {
     document.body.setAttribute("data-color-mode", colorMode);
 }
@@ -133,3 +143,5 @@ function warnAboutMultipleInitialization() {
         "No new instance of Snowy has been created.",
     ].join(" "));
 }
+
+// initialize();

@@ -4,6 +4,7 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
 import * as $api_posts_protected_middleware from "./routes/api/posts/(protected)/_middleware.ts";
 import * as $api_posts_protected_delete_all from "./routes/api/posts/(protected)/delete-all.ts";
 import * as $api_posts_delete from "./routes/api/posts/delete.ts";
@@ -23,6 +24,7 @@ const manifest = {
 	routes: {
 		"./routes/_404.tsx": $_404,
 		"./routes/_app.tsx": $_app,
+		"./routes/_layout.tsx": $_layout,
 		"./routes/api/posts/(protected)/_middleware.ts":
 			$api_posts_protected_middleware,
 		"./routes/api/posts/(protected)/delete-all.ts":

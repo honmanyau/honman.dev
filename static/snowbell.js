@@ -8,15 +8,15 @@ const DEFAULT_GLOBAL_NAMESPACE = "snowbell";
 const DEFAULT_LOCAL_STORAGE_NAMESPACE = "snowbell";
 const GLOBAL_INSTANCE_IDENTIFIER = Symbol("snowbell");
 let storageManager;
-initialize();
 function initialize({ localStorageKey = DEFAULT_LOCAL_STORAGE_NAMESPACE } = {}) {
     const existingInstance = getExistingInstance();
     if (existingInstance) return existingInstance;
     initializeLocalStorageManager(localStorageKey);
     const storedColorMode = getStoredColorMode();
     const newInstance = {
+        [GLOBAL_INSTANCE_IDENTIFIER]: true,
         colorMode: storedColorMode || getPreferredColorScheme(),
-        [GLOBAL_INSTANCE_IDENTIFIER]: true
+        setColorMode
     };
     globalThis[DEFAULT_GLOBAL_NAMESPACE] = newInstance;
     setDocumentElementDataAttribute(newInstance.colorMode);
@@ -54,6 +54,13 @@ function getExistingInstance() {
         return existingInstance;
     }
 }
+function setColorMode(colorMode) {
+    if (colorMode === this.colorMode) return this.colorMode;
+    this.colorMode = colorMode;
+    storageManager.setItem("colorMode", colorMode);
+    setDocumentElementDataAttribute(this.colorMode);
+    return colorMode;
+}
 function setDocumentElementDataAttribute(colorMode) {
     document.body.setAttribute("data-color-mode", colorMode);
 }
@@ -77,4 +84,6 @@ function warnAboutMultipleInitialization() {
         "No new instance of Snowy has been created."
     ].join(" "));
 }
+initialize();
+export { ColorMode as ColorMode };
 export { initialize as initialize };
