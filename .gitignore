@@ -12,4 +12,4 @@ node_modules/
 
 # local
 .DS_Store
-static/markdowns
+static/markdowns/*.md
