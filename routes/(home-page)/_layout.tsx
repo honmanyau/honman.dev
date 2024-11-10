@@ -11,9 +11,8 @@ export default function Layout({ Component }: PageProps) {
                 class="home-page-layout-right bento"
                 style={{ "--columns": 1 }}
             >
-                <HomeButton />
+                <HomeButton disabled />
                 <ColorSchemeToggle />
-                {/* <SocialIcons /> */}
             </div>
         </main>
     );

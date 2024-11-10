@@ -447,6 +447,7 @@ video {
 }
 
 .bento-icon {
+    display: inline-block;
     margin: 0;
     padding: 0;
     height: var(--icon-size);
