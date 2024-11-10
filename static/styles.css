@@ -335,6 +335,10 @@ video {
         calc(1 * var(--bento-unit) + 0 * var(--bento-gap));
     gap: var(--bento-gap);
 
+    .home-page-layout-right {
+        --columns: 1;
+    }
+
     @media screen and (max-width: 1440px) {
         grid-template-columns:
             calc(5 * var(--bento-unit) + 4 * var(--bento-gap))
