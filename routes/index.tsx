@@ -1,9 +1,16 @@
-import type { PageProps } from "$fresh/server.ts";
+import type { RouteContext } from "$fresh/server.ts";
 
-export default function Home(_props: PageProps) {
+import BentoAreaLatestPost from "@/components/BentoAreaLatestPost.tsx";
+import BentoAreaSiteIntro from "@/components/BentoAreaSiteIntro.tsx";
+import { indexPosts } from "@/db/repository/post.ts";
+
+export default async function Home(_req: Request, _ctx: RouteContext) {
+	const posts = await indexPosts({ sort: "desc" });
+
 	return (
-		<div class="">
-			Uwah
-		</div>
+		<>
+			<BentoAreaSiteIntro />
+			<BentoAreaLatestPost post={posts[0]} />
+		</>
 	);
 }

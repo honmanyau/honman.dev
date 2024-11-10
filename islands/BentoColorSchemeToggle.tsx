@@ -2,7 +2,7 @@ import { useSignal } from "@preact/signals";
 
 import { ColorMode } from "@/lib/snowbell/mod.ts";
 
-export default function ColorSchemeToggle() {
+export default function BentoColorSchemeToggle() {
     const mode = useSignal(globalThis.snowbell?.colorMode);
     const iconClass = mode.value && getCssIconClass(mode.value);
 
@@ -16,12 +16,14 @@ export default function ColorSchemeToggle() {
     };
 
     return (
-        <button
-            class="bento-icon"
-            onClick={toggleColorMode}
-        >
-            <span class={`icon--material-symbols ${iconClass}`}></span>
-        </button>
+        <div class="bento-area-color-mode-toggle bento-item bento-item-icon">
+            <button
+                class="bento-icon"
+                onClick={toggleColorMode}
+            >
+                <span class={`icon--material-symbols ${iconClass}`}></span>
+            </button>
+        </div>
     );
 }
 
