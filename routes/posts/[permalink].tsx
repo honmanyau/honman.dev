@@ -8,7 +8,7 @@ export default async function BlogPost(_req: Request, ctx: RouteContext) {
 
     return (
         <main
-            class="bento-area-blog-post bento-item"
+            class="bento-item post"
             dangerouslySetInnerHTML={{ __html: makePostContentHtml(post) }}
         >
         </main>

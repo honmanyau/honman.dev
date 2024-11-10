@@ -318,10 +318,25 @@ video {
         calc(7 * var(--bento-unit) + 5 * var(--bento-gap))
         calc(3 * var(--bento-unit) + 2 * var(--bento-gap));
     gap: var(--bento-gap);
-    height: 100%;
+}
+
+.post-page-layout {
+    display: grid;
+    grid-template-columns:
+        calc(4 * var(--bento-unit) + 3 * var(--bento-gap))
+        calc(8 * var(--bento-unit) + 7 * var(--bento-gap))
+        calc(4 * var(--bento-unit) + 3 * var(--bento-gap));
+    gap: var(--bento-gap);
 }
 
 .bento-3 {
+    display: grid;
+    grid-template-columns: repeat(3, var(--bento-unit));
+    grid-auto-rows: var(--bento-unit);
+    gap: var(--bento-gap);
+}
+
+.bento-4 {
     display: grid;
     grid-template-columns: repeat(3, var(--bento-unit));
     grid-auto-rows: var(--bento-unit);

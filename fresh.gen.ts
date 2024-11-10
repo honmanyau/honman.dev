@@ -2,14 +2,15 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $_home_page_layout from "./routes/(home-page)/_layout.tsx";
+import * as $_home_page_index from "./routes/(home-page)/index.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $_layout from "./routes/_layout.tsx";
 import * as $api_posts_protected_middleware from "./routes/api/posts/(protected)/_middleware.ts";
 import * as $api_posts_protected_delete_all from "./routes/api/posts/(protected)/delete-all.ts";
 import * as $api_posts_delete from "./routes/api/posts/delete.ts";
-import * as $index from "./routes/index.tsx";
 import * as $posts_permalink_ from "./routes/posts/[permalink].tsx";
+import * as $posts_layout from "./routes/posts/_layout.tsx";
 import * as $posts_index from "./routes/posts/index.tsx";
 import * as $shikwasa_middleware from "./routes/shikwasa/_middleware.ts";
 import * as $shikwasa_create from "./routes/shikwasa/create.tsx";
@@ -25,16 +26,17 @@ import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
 	routes: {
+		"./routes/(home-page)/_layout.tsx": $_home_page_layout,
+		"./routes/(home-page)/index.tsx": $_home_page_index,
 		"./routes/_404.tsx": $_404,
 		"./routes/_app.tsx": $_app,
-		"./routes/_layout.tsx": $_layout,
 		"./routes/api/posts/(protected)/_middleware.ts":
 			$api_posts_protected_middleware,
 		"./routes/api/posts/(protected)/delete-all.ts":
 			$api_posts_protected_delete_all,
 		"./routes/api/posts/delete.ts": $api_posts_delete,
-		"./routes/index.tsx": $index,
 		"./routes/posts/[permalink].tsx": $posts_permalink_,
+		"./routes/posts/_layout.tsx": $posts_layout,
 		"./routes/posts/index.tsx": $posts_index,
 		"./routes/shikwasa/_middleware.ts": $shikwasa_middleware,
 		"./routes/shikwasa/create.tsx": $shikwasa_create,

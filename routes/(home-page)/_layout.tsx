@@ -1,7 +1,7 @@
 import { PageProps } from "$fresh/server.ts";
 
 import SocialIcons from "@/components/SocialIcons.tsx";
-import ColorSchemeToggle from "../islands/ColorSchemeToggle.tsx";
+import ColorSchemeToggle from "../../islands/ColorSchemeToggle.tsx";
 
 export default function Layout({ Component }: PageProps) {
     return (
