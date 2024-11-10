@@ -88,6 +88,7 @@
 }
 
 html {
+    scrollbar-gutter: stable;
     font-size: 22px;
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
@@ -314,18 +315,18 @@ video {
 .home-page-layout {
     display: grid;
     grid-template-columns:
-        calc(6 * var(--bento-unit) + 4 * var(--bento-gap))
-        calc(7 * var(--bento-unit) + 5 * var(--bento-gap))
-        calc(3 * var(--bento-unit) + 2 * var(--bento-gap));
+        calc(6 * var(--bento-unit) + 5 * var(--bento-gap))
+        calc(7 * var(--bento-unit) + 6 * var(--bento-gap))
+        calc(1 * var(--bento-unit) + 0 * var(--bento-gap));
     gap: var(--bento-gap);
 }
 
 .post-page-layout {
     display: grid;
     grid-template-columns:
-        calc(4 * var(--bento-unit) + 3 * var(--bento-gap))
+        calc(3 * var(--bento-unit) + 2 * var(--bento-gap))
         calc(8 * var(--bento-unit) + 7 * var(--bento-gap))
-        calc(4 * var(--bento-unit) + 3 * var(--bento-gap));
+        calc(3 * var(--bento-unit) + 2 * var(--bento-gap));
     gap: var(--bento-gap);
 }
 
