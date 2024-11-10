@@ -329,23 +329,9 @@ video {
     gap: var(--bento-gap);
 }
 
-.bento-3 {
+.bento {
     display: grid;
-    grid-template-columns: repeat(3, var(--bento-unit));
-    grid-auto-rows: var(--bento-unit);
-    gap: var(--bento-gap);
-}
-
-.bento-4 {
-    display: grid;
-    grid-template-columns: repeat(3, var(--bento-unit));
-    grid-auto-rows: var(--bento-unit);
-    gap: var(--bento-gap);
-}
-
-.bento-6 {
-    display: grid;
-    grid-template-columns: repeat(6, var(--bento-unit));
+    grid-template-columns: repeat(var(--columns, auto-fill), var(--bento-unit));
     grid-auto-rows: var(--bento-unit);
     gap: var(--bento-gap);
 }

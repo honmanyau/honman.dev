@@ -9,7 +9,7 @@ export default function SiteIntro() {
             </h1>
             <h2>
                 I write about coding and everyday things; mess around with CSS;
-                and work on projects.
+                and work on coding projects.
             </h2>
         </div>
     );

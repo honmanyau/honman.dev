@@ -7,7 +7,7 @@ export default function Layout({ Component }: PageProps) {
     return (
         <main class="home-page-layout">
             <Component />
-            <div class="bento-3">
+            <div class="bento" style={{ "--columns": 3 }}>
                 <ColorSchemeToggle />
                 <SocialIcons />
             </div>

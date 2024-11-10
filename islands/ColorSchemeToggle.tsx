@@ -17,15 +17,13 @@ export default function ColorSchemeToggle() {
     };
 
     return (
-        <div class="bento-3">
-            <div class="bento-item bento-item-icon" style={style}>
-                <button
-                    class="bento-icon"
-                    onClick={toggleColorMode}
-                >
-                    <span class={`icon--material-symbols ${iconClass}`}></span>
-                </button>
-            </div>
+        <div class="bento-item bento-item-icon" style={style}>
+            <button
+                class="bento-icon"
+                onClick={toggleColorMode}
+            >
+                <span class={`icon--material-symbols ${iconClass}`}></span>
+            </button>
         </div>
     );
 }

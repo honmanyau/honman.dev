@@ -8,7 +8,7 @@ export default function Layout({ Component }: PageProps) {
         <main class="post-page-layout">
             <div></div>
             <Component />
-            <div class="bento-4">
+            <div class="bento" style={{ "--columns": 4 }}>
                 <ColorSchemeToggle />
                 <SocialIcons />
             </div>
