@@ -1,7 +1,11 @@
-export default function BentoAreaSocialIcons() {
+export default function SocialIcons() {
+    const gitHubStyle = { gridColumn: "-2 / span 1", gridRow: "2" };
+    const linkedInStyle = { gridColumn: "-2 / span 1", gridRow: "3" };
+    const rssStyle = { gridColumn: "-2 / span 1", gridRow: "4" };
+
     return (
         <>
-            <div class="bento-area-github bento-item bento-item-icon">
+            <div class="bento-item bento-item-icon" style={gitHubStyle}>
                 <a
                     class="bento-icon"
                     target="_blank"
@@ -12,7 +16,7 @@ export default function BentoAreaSocialIcons() {
                     </span>
                 </a>
             </div>
-            <div class="bento-area-linkedin bento-item bento-item-icon">
+            <div class="bento-item bento-item-icon" style={linkedInStyle}>
                 <a
                     class="bento-icon"
                     target="_blank"
@@ -23,7 +27,7 @@ export default function BentoAreaSocialIcons() {
                     </span>
                 </a>
             </div>
-            <div class="bento-area-rss bento-item bento-item-icon">
+            <div class="bento-item bento-item-icon" style={rssStyle}>
                 <a
                     class="bento-icon"
                     href="/feed.xml"

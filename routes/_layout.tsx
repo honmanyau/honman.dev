@@ -1,12 +1,16 @@
 import { PageProps } from "$fresh/server.ts";
 
-import BentoColorSchemeToggle from "@/islands/BentoColorSchemeToggle.tsx";
+import SocialIcons from "@/components/SocialIcons.tsx";
+import ColorSchemeToggle from "../islands/ColorSchemeToggle.tsx";
 
 export default function Layout({ Component }: PageProps) {
     return (
         <main class="home-page-layout">
             <Component />
-            <BentoColorSchemeToggle />
+            <div class="bento-3">
+                <ColorSchemeToggle />
+                <SocialIcons />
+            </div>
         </main>
     );
 }
