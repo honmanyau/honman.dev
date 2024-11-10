@@ -1,6 +1,6 @@
 import { PageProps } from "$fresh/server.ts";
+import HomeButton from "@/components/HomeButton.tsx";
 
-import SocialIcons from "@/components/SocialIcons.tsx";
 import ColorSchemeToggle from "../../islands/ColorSchemeToggle.tsx";
 
 export default function Layout({ Component }: PageProps) {
@@ -8,9 +8,10 @@ export default function Layout({ Component }: PageProps) {
         <main class="post-page-layout">
             <div></div>
             <Component />
-            <div class="bento" style={{ "--columns": 3 }}>
+            <div class="post-page-layout-right bento">
+                <HomeButton />
                 <ColorSchemeToggle />
-                <SocialIcons />
+                {/* <SocialIcons /> */}
             </div>
         </main>
     );

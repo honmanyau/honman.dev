@@ -204,6 +204,11 @@ a {
     color: inherit;
     font-size: inherit;
     line-height: inherit;
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
 }
 
 h1 > a,
@@ -275,6 +280,10 @@ video {
     --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M2 21q-.425 0-.712-.288T1 20t.288-.712T2 19h20q.425 0 .713.288T23 20t-.288.713T22 21zm2-3q-.825 0-1.412-.587T2 16V5q0-.825.588-1.412T4 3h16q.825 0 1.413.588T22 5v11q0 .825-.587 1.413T20 18zm0-2h16V5H4zm0 0V5z'/%3E%3C/svg%3E");
 }
 
+.icon--material-symbols--house-rounded {
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M7 20q-.825 0-1.412-.587T5 18v-7.15l-2 1.525q-.35.25-.75.213T1.6 12.2t-.2-.75t.4-.65l8.975-6.875q.275-.2.588-.3t.637-.1t.638.1t.587.3L16 6.05V5.5q0-.625.438-1.062T17.5 4t1.063.438T19 5.5v2.85l3.2 2.45q.325.25.388.65t-.188.75t-.65.388t-.75-.213l-2-1.525V18q0 .825-.587 1.413T17 20h-1q-.825 0-1.412-.587T14 18v-2q0-.825-.587-1.412T12 14t-1.412.588T10 16v2q0 .825-.587 1.413T8 20zm3-9.975h4q0-.8-.6-1.313T12 8.2t-1.4.513t-.6 1.312'/%3E%3C/svg%3E");
+}
+
 /**
  * Iconify Material Design Icons
  * https://api.iconify.design/mdi.css?icons=github,linkedin,rss-box,house
@@ -311,6 +320,12 @@ video {
 /**
  * Layouts
  */
+/* Breakpoints */
+/* --breakpoint-sm: 320px;
+     --breakpoint-md: 672px;
+     --breakpoint-lg: 1056px;
+     --breakpoint-xl: 1312px;
+     --breakpoint-xxl: 1584px; */
 
 .home-page-layout {
     display: grid;
@@ -319,6 +334,38 @@ video {
         calc(7 * var(--bento-unit) + 6 * var(--bento-gap))
         calc(1 * var(--bento-unit) + 0 * var(--bento-gap));
     gap: var(--bento-gap);
+
+    @media screen and (max-width: 1440px) {
+        grid-template-columns:
+            calc(5 * var(--bento-unit) + 4 * var(--bento-gap))
+            calc(6 * var(--bento-unit) + 5 * var(--bento-gap))
+            calc(1 * var(--bento-unit) + 0 * var(--bento-gap));
+    }
+
+    @media screen and (max-width: 1280px) {
+        grid-template-columns:
+            calc(4 * var(--bento-unit) + 3 * var(--bento-gap))
+            calc(5 * var(--bento-unit) + 4 * var(--bento-gap))
+            calc(1 * var(--bento-unit) + 0 * var(--bento-gap));
+    }
+
+    @media screen and (max-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+
+        .home-page-layout-right {
+            order: -1;
+            display: flex;
+            gap: calc(var(--bento-gap) + var(--bento-item-padding));
+            padding: 0 var(--bento-item-padding);
+
+            .bento-item {
+                height: max-content;
+                width: max-content;
+                padding: 0;
+            }
+        }
+    }
 }
 
 .post-page-layout {
@@ -328,6 +375,50 @@ video {
         calc(8 * var(--bento-unit) + 7 * var(--bento-gap))
         calc(3 * var(--bento-unit) + 2 * var(--bento-gap));
     gap: var(--bento-gap);
+
+    .post-page-layout-right {
+        --columns: 3;
+    }
+
+    @media screen and (max-width: 1440px) {
+        grid-template-columns:
+            calc(3 * var(--bento-unit) + 2 * var(--bento-gap))
+            calc(6 * var(--bento-unit) + 5 * var(--bento-gap))
+            calc(3 * var(--bento-unit) + 2 * var(--bento-gap));
+
+        .post-page-layout-right {
+            --columns: 3;
+        }
+    }
+
+    @media screen and (max-width: 1280px) {
+        grid-template-columns:
+            calc(2 * var(--bento-unit) + 1 * var(--bento-gap))
+            calc(6 * var(--bento-unit) + 5 * var(--bento-gap))
+            calc(2 * var(--bento-unit) + 1 * var(--bento-gap));
+
+        .post-page-layout-right {
+            --columns: 2;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+
+        .post-page-layout-right {
+            order: -1;
+            display: flex;
+            gap: calc(var(--bento-gap) + var(--bento-item-padding));
+            padding: 0 var(--bento-item-padding);
+
+            .bento-item {
+                height: max-content;
+                width: max-content;
+                padding: 0;
+            }
+        }
+    }
 }
 
 .bento {

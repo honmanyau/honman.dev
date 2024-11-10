@@ -5,7 +5,10 @@ import { ColorMode } from "@/lib/snowbell/mod.ts";
 export default function ColorSchemeToggle() {
     const mode = useSignal(globalThis.snowbell?.colorMode);
     const iconClass = mode.value && getCssIconClass(mode.value);
-    const style = { gridColumn: "-2 / span 1", gridRow: "1" };
+    const style = { gridColumn: "-2 / span 1", gridRow: "2" };
+    const title = `Toggle to ${
+        mode.value === ColorMode.LIGHT ? "dark" : "light"
+    } mode.`;
 
     const toggleColorMode = () => {
         const nextMode = mode.value === ColorMode.LIGHT
@@ -21,6 +24,7 @@ export default function ColorSchemeToggle() {
             <button
                 class="bento-icon"
                 onClick={toggleColorMode}
+                title={title}
             >
                 <span class={`icon--material-symbols ${iconClass}`}></span>
             </button>
