@@ -76,9 +76,9 @@
     /* Dimensions */
     --body-padding-x: 2rem;
     --body-padding-y: 1rem;
-    --bento-gap: 0.5rem;
-    --bento-unit: 3rem;
-    --main-header-height: 2rem;
+    --grid-base-unit: 8px;
+    --bento-gap: calc(2 * var(--grid-base-unit));
+    --bento-unit: calc(10 * var(--grid-base-unit));
 }
 
 html {
@@ -92,6 +92,9 @@ html {
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    padding: var(--body-padding-y) var(--body-padding-x);
     font-family: var(--system-sans-serif);
     color: var(--font-color-light);
     background-color: var(--background-color-light);
@@ -226,43 +229,42 @@ video {
     height: auto;
 }
 
-.icon-button {
-    margin: 0;
-    padding: 0;
-    height: 1.5rem;
-    border: none;
-    font-size: 1.5rem;
-    color: inherit;
-    background: none;
-}
-
-.main-container {
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    min-height: 100vh;
-    padding: var(--body-padding-y) var(--body-padding-x);
-}
-
-.main-header {
-    height: var(--main-header-height);
-}
-
 .bento-box {
     display: grid;
     gap: var(--bento-gap);
     grid-template-columns: repeat(16, var(--bento-unit));
-    grid-template-rows: repeat(10, var(--bento-unit));
+    grid-template-rows: repeat(auto-fill, var(--bento-unit));
     height: 100%;
 }
 
-.bento-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
+.bento-compartment-icon {
+    align-self: center;
+    justify-self: center;
+    line-height: 0;
 }
 
+button.bento-icon {
+    border: none;
+    color: inherit;
+    background: none;
+}
+
+.bento-icon {
+    margin: 0;
+    padding: 0;
+    height: 2rem;
+    font-size: 2rem;
+}
+
+.bento-area-color-mode-toggle {
+    grid-column: -2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+/**
+ * Iconify Material Symbols
+ * https://api.iconify.design/material-symbols.css?icons=light-mode-outline-rounded,dark-mode-rounded,computer-outline-rounded
+ */
 .icon--material-symbols {
     display: inline-block;
     width: 1em;
@@ -286,4 +288,37 @@ video {
 
 .icon--material-symbols--computer-outline-rounded {
     --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M2 21q-.425 0-.712-.288T1 20t.288-.712T2 19h20q.425 0 .713.288T23 20t-.288.713T22 21zm2-3q-.825 0-1.412-.587T2 16V5q0-.825.588-1.412T4 3h16q.825 0 1.413.588T22 5v11q0 .825-.587 1.413T20 18zm0-2h16V5H4zm0 0V5z'/%3E%3C/svg%3E");
+}
+
+/**
+ * Iconify Material Design Icons
+ * https://api.iconify.design/mdi.css?icons=github,linkedin,rss-box,house
+ */
+.icon--mdi {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+.icon--mdi--github {
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2'/%3E%3C/svg%3E");
+}
+
+.icon--mdi--linkedin {
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z'/%3E%3C/svg%3E");
+}
+
+.icon--mdi--rss-box {
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m2.5 12A1.5 1.5 0 0 0 6 16.5A1.5 1.5 0 0 0 7.5 18A1.5 1.5 0 0 0 9 16.5A1.5 1.5 0 0 0 7.5 15M6 10v2a6 6 0 0 1 6 6h2a8 8 0 0 0-8-8m0-4v2a10 10 0 0 1 10 10h2A12 12 0 0 0 6 6'/%3E%3C/svg%3E");
+}
+
+.icon--mdi--house {
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='black' d='M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z'/%3E%3C/svg%3E");
 }

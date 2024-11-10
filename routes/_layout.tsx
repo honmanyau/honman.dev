@@ -4,20 +4,11 @@ import ColorSchemeToggle from "@/islands/ColorSchemeToggle.tsx";
 
 export default function Layout({ Component }: PageProps) {
     return (
-        <div class="main-container">
-            <main class="bento-box">
+        <main class="bento-box">
+            <div class="bento-compartment-icon bento-area-color-mode-toggle">
                 <ColorSchemeToggle />
-                <Component />
-
-                <div
-                    class="bento-item"
-                    style={{
-                        gridRow: "1 / -1",
-                        gridColumn: "5 / -5",
-                    }}
-                >
-                </div>
-            </main>
-        </div>
+            </div>
+            <Component />
+        </main>
     );
 }

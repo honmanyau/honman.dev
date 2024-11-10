@@ -16,19 +16,12 @@ export default function ColorSchemeToggle() {
     };
 
     return (
-        <div
-            class="bento-item"
-            style={{
-                gridColumn: "-2 / -1",
-            }}
+        <button
+            class="bento-icon"
+            onClick={toggleColorMode}
         >
-            <button
-                class="icon-button"
-                onClick={toggleColorMode}
-            >
-                <span class={`icon--material-symbols ${iconClass}`}></span>
-            </button>
-        </div>
+            <span class={`icon--material-symbols ${iconClass}`}></span>
+        </button>
     );
 }
 
