@@ -49,7 +49,16 @@ export function initialize({
 
     globalThis[DEFAULT_GLOBAL_NAMESPACE] = newInstance;
 
-    setDocumentElementDataAttribute(newInstance.colorMode);
+    if (document) {
+        setDocumentElementDataAttribute(newInstance.colorMode);
+
+        globalThis.addEventListener("load", addTransitionClassToBody);
+        globalThis.addEventListener(
+            "beforeunload",
+            () =>
+                document.removeEventListener("load", addTransitionClassToBody),
+        );
+    }
 
     return newInstance;
 }
@@ -81,6 +90,10 @@ function getPreferredColorScheme(): ColorMode {
     if (prefersDarkScheme) return ColorMode.DARK;
 
     return ColorMode.SYSTEM;
+}
+
+function addTransitionClassToBody() {
+    document.body.classList.add("transition-colors");
 }
 
 function getStoredColorMode(): ColorMode | undefined {

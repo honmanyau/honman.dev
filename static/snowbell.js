@@ -1,5 +1,5 @@
 var ColorMode;
-(function(ColorMode) {
+(function (ColorMode) {
     ColorMode["LIGHT"] = "light";
     ColorMode["DARK"] = "dark";
     ColorMode["SYSTEM"] = "system";
@@ -8,7 +8,9 @@ const DEFAULT_GLOBAL_NAMESPACE = "snowbell";
 const DEFAULT_LOCAL_STORAGE_NAMESPACE = "snowbell";
 const GLOBAL_INSTANCE_IDENTIFIER = Symbol("snowbell");
 let storageManager;
-function initialize({ localStorageKey = DEFAULT_LOCAL_STORAGE_NAMESPACE } = {}) {
+function initialize(
+    { localStorageKey = DEFAULT_LOCAL_STORAGE_NAMESPACE } = {},
+) {
     const existingInstance = getExistingInstance();
     if (existingInstance) return existingInstance;
     initializeLocalStorageManager(localStorageKey);
@@ -16,29 +18,44 @@ function initialize({ localStorageKey = DEFAULT_LOCAL_STORAGE_NAMESPACE } = {}) 
     const newInstance = {
         [GLOBAL_INSTANCE_IDENTIFIER]: true,
         colorMode: storedColorMode || getPreferredColorScheme(),
-        setColorMode
+        setColorMode,
     };
     globalThis[DEFAULT_GLOBAL_NAMESPACE] = newInstance;
-    setDocumentElementDataAttribute(newInstance.colorMode);
+    if (document) {
+        setDocumentElementDataAttribute(newInstance.colorMode);
+        globalThis.addEventListener("load", addTransitionClassToBody);
+        globalThis.addEventListener(
+            "beforeunload",
+            () =>
+                document.removeEventListener("load", addTransitionClassToBody),
+        );
+    }
     return newInstance;
 }
 function initializeLocalStorageManager(namespace) {
     storageManager = {
-        getItem: function(key) {
+        getItem: function (key) {
             return localStorage.getItem(`${namespace}.${key}`);
         },
-        setItem: function(key, value) {
+        setItem: function (key, value) {
             localStorage.setItem(`${namespace}.${key}`, value);
-        }
+        },
     };
     return storageManager;
 }
 function getPreferredColorScheme() {
-    const prefersLightScheme = globalThis.matchMedia?.("(prefers-color-scheme: light)").matches;
+    const prefersLightScheme = globalThis.matchMedia?.(
+        "(prefers-color-scheme: light)",
+    ).matches;
     if (prefersLightScheme) return ColorMode.LIGHT;
-    const prefersDarkScheme = globalThis.matchMedia?.("(prefers-color-scheme: dark)").matches;
+    const prefersDarkScheme = globalThis.matchMedia?.(
+        "(prefers-color-scheme: dark)",
+    ).matches;
     if (prefersDarkScheme) return ColorMode.DARK;
     return ColorMode.SYSTEM;
+}
+function addTransitionClassToBody() {
+    document.body.classList.add("transition-colors");
 }
 function getStoredColorMode() {
     const storedColorMode = storageManager.getItem("colorMode");
@@ -66,11 +83,14 @@ function setDocumentElementDataAttribute(colorMode) {
 }
 function validateSnowyInstance(snowyInstance) {
     if (snowyInstance[GLOBAL_INSTANCE_IDENTIFIER]) {
-        const likelyNotASnowyInstance = !Object.prototype.hasOwnProperty.call(globalThis[DEFAULT_GLOBAL_NAMESPACE], GLOBAL_INSTANCE_IDENTIFIER);
+        const likelyNotASnowyInstance = !Object.prototype.hasOwnProperty.call(
+            globalThis[DEFAULT_GLOBAL_NAMESPACE],
+            GLOBAL_INSTANCE_IDENTIFIER,
+        );
         if (likelyNotASnowyInstance) {
             const errorMessage = [
                 "`snowyColorMode` is already defined in the global",
-                "namespace, and it doesn't appear to be an instance of Snowy!"
+                "namespace, and it doesn't appear to be an instance of Snowy!",
             ].join(" ");
             throw new Error(errorMessage);
         }
@@ -81,9 +101,8 @@ function warnAboutMultipleInitialization() {
     console.warn([
         "`snowyColorMode` is already defined in the global namespace.",
         "There are likely multiple places in your code initializing Snowy.",
-        "No new instance of Snowy has been created."
+        "No new instance of Snowy has been created.",
     ].join(" "));
 }
+export { ColorMode as ColorMode, initialize as initialize };
 initialize();
-export { ColorMode as ColorMode };
-export { initialize as initialize };

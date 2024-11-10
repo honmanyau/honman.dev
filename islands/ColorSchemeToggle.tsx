@@ -3,7 +3,11 @@ import { useSignal } from "@preact/signals";
 import { ColorMode } from "@/lib/snowbell/mod.ts";
 
 export default function ColorSchemeToggle() {
-    const mode = useSignal(globalThis.snowbell?.colorMode);
+    if (!globalThis.snowbell) {
+        return null;
+    }
+
+    const mode = useSignal(globalThis.snowbell?.colorMode || ColorMode.LIGHT);
     const iconClass = mode.value && getCssIconClass(mode.value);
     const style = { gridColumn: "-2 / span 1", gridRow: "2" };
     const title = `Toggle to ${
