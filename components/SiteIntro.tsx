@@ -1,7 +1,7 @@
-export default function BentoAreaSiteIntro() {
+export default function SiteIntro() {
     return (
-        <div class="bento-area-site-intro bento-item">
-            <h1>
+        <div class="site-intro bento-item">
+            <h1 class="no-margin">
                 This website is the canvas and laboratory of{" "}
                 <span style={{ fontFamily: `var(--system-serif)` }}>
                     Honman

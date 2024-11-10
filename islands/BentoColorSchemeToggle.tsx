@@ -5,6 +5,7 @@ import { ColorMode } from "@/lib/snowbell/mod.ts";
 export default function BentoColorSchemeToggle() {
     const mode = useSignal(globalThis.snowbell?.colorMode);
     const iconClass = mode.value && getCssIconClass(mode.value);
+    const style = { gridColumn: "-2 / span 1", gridRow: "1" };
 
     const toggleColorMode = () => {
         const nextMode = mode.value === ColorMode.LIGHT
@@ -16,13 +17,15 @@ export default function BentoColorSchemeToggle() {
     };
 
     return (
-        <div class="bento-area-color-mode-toggle bento-item bento-item-icon">
-            <button
-                class="bento-icon"
-                onClick={toggleColorMode}
-            >
-                <span class={`icon--material-symbols ${iconClass}`}></span>
-            </button>
+        <div class="bento-3">
+            <div class="bento-item bento-item-icon" style={style}>
+                <button
+                    class="bento-icon"
+                    onClick={toggleColorMode}
+                >
+                    <span class={`icon--material-symbols ${iconClass}`}></span>
+                </button>
+            </div>
         </div>
     );
 }

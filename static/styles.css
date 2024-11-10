@@ -79,6 +79,7 @@
 
     /* Dimensions */
     --grid-base-unit: 8px;
+    --standard-content-padding: calc(3 * var(--grid-base-unit));
     --body-padding-x: calc(2 * var(--grid-base-unit));
     --body-padding-y: calc(2 * var(--grid-base-unit));
     --bento-gap: calc(2 * var(--grid-base-unit));
@@ -155,31 +156,41 @@ form {
 h1 {
     font-size: var(--font-xxl);
     line-height: var(--line-height-font-xxl);
+    margin-top: var(--standard-content-padding);
 }
 
 h2 {
     font-size: var(--font-xl);
     line-height: var(--line-height-font-xl);
+    margin-top: var(--standard-content-padding);
 }
 
 h3 {
     font-size: var(--font-lg);
     line-height: var(--line-height-font-lg);
+    margin-top: var(--standard-content-padding);
 }
 
 h4 {
     font-size: var(--font-base);
     line-height: var(--line-height-font-base);
+    margin-top: var(--standard-content-padding);
 }
 
 h5 {
     font-size: var(--font-sm);
     line-height: var(--line-height-font-sm);
+    margin-top: var(--standard-content-padding);
+}
+
+.no-margin {
+    margin: 0;
 }
 
 p {
     font-size: var(--font-base);
     line-height: var(--line-height-font-base);
+    margin-top: var(--standard-content-padding);
 }
 
 ul,
@@ -297,29 +308,48 @@ video {
 }
 
 /**
- * Bento box
+ * Layouts
  */
 
-.bento-box {
+.home-page-layout {
     display: grid;
+    grid-template-columns:
+        calc(6 * var(--bento-unit) + 4 * var(--bento-gap))
+        calc(7 * var(--bento-unit) + 5 * var(--bento-gap))
+        calc(3 * var(--bento-unit) + 2 * var(--bento-gap));
     gap: var(--bento-gap);
-    grid-template-columns: repeat(16, var(--bento-unit));
-    grid-auto-rows: var(--bento-unit);
     height: 100%;
+}
+
+.bento-3 {
+    display: grid;
+    grid-template-columns: repeat(3, var(--bento-unit));
+    grid-auto-rows: var(--bento-unit);
+    gap: var(--bento-gap);
+}
+
+.bento-6 {
+    display: grid;
+    grid-template-columns: repeat(6, var(--bento-unit));
+    grid-auto-rows: var(--bento-unit);
+    gap: var(--bento-gap);
 }
 
 .bento-item {
     padding: var(--bento-item-padding);
-}
 
-.bento-item-icon {
-    align-self: center;
-    justify-self: center;
-    line-height: 0;
+    &:has(.bento-icon) {
+        align-self: center;
+        justify-self: center;
+        height: var(--bento-unit);
+        width: var(--bento-unit);
+        line-height: 0;
+    }
 }
 
 .bento-icon {
     --icon-size: calc(4 * var(--grid-base-unit));
+
     margin: 0;
     padding: 0;
     height: var(--icon-size);
@@ -331,51 +361,25 @@ video {
     background: none;
 }
 
-.bento-area-color-mode-toggle {
-    grid-column: -2 / span 1;
-    grid-row: 1 / span 1;
-}
-
-.bento-area-github {
-    grid-column: -2 / span 1;
-    grid-row: 3 / span 1;
-}
-
-.bento-area-linkedin {
-    grid-column: -2 / span 1;
-    grid-row: 4 / span 1;
-}
-
-.bento-area-rss {
-    grid-column: -2 / span 1;
-    grid-row: 5 / span 1;
-}
-
-.bento-area-color-mode-toggle {
-    grid-column: -2 / span 1;
-    grid-row: 1 / span 1;
-}
-
-.bento-area-latest-post {
-    grid-column: 7 / span 7;
-    grid-row: 1 / span 6;
-}
-
-.bento-area-site-intro {
-    grid-column: 1 / span 6;
-    grid-row: 1 / span 4;
-
+.site-intro {
     h2 {
         font-weight: normal;
     }
 }
 
-.bento-area-blog-post {
-    grid-column: 5 / span 8;
+.latest-posts {
+    & > *:not(:last-child) {
+        margin-bottom: var(--standard-content-padding);
+    }
 }
 
-article {
+.post {
     font-family: var(--system-serif);
+
+    h2,
+    p:first-of-type {
+        margin: 0;
+    }
 }
 
 /**
@@ -384,6 +388,7 @@ article {
 .post-info {
     font-size: var(--font-info);
     color: var(--font-color-time-light);
+    margin: calc(1.5 * var(--grid-base-unit)) 0;
 
     & time {
         font-weight: bold;

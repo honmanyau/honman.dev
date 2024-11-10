@@ -1,16 +1,16 @@
 import type { RouteContext } from "$fresh/server.ts";
 
 import BentoAreaLatestPost from "@/components/BentoAreaLatestPost.tsx";
-import BentoAreaSiteIntro from "@/components/BentoAreaSiteIntro.tsx";
 import { indexPosts } from "@/db/repository/post.ts";
+import SiteIntro from "../components/SiteIntro.tsx";
 
 export default async function Home(_req: Request, _ctx: RouteContext) {
 	const posts = await indexPosts({ sort: "desc" });
 
 	return (
 		<>
-			<BentoAreaSiteIntro />
-			<BentoAreaLatestPost post={posts[0]} />
+			<SiteIntro />
+			<BentoAreaLatestPost posts={posts.slice(0, 7)} />
 		</>
 	);
 }

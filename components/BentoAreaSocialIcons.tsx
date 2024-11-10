@@ -1,4 +1,4 @@
-export default function BentoSocialIcons() {
+export default function BentoAreaSocialIcons() {
     return (
         <>
             <div class="bento-area-github bento-item bento-item-icon">
