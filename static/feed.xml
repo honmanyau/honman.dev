@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>honman.dev</title>
+  <subtitle>Honman&apos;s canvas and laboratory on the Internet.</subtitle>
+  <link rel="alternate" href="https://honman.dev/feed"/>
+  <updated>2024-11-10T10:40:29.767Z</updated>
+  <generator>Feed for Deno</generator>
+  <author>
+    <name>Honman Yau</name>
+    <email>not.delivered@honman.dev</email>
+  </author>
+  <entry>
+    <title>Strangers playing jazz</title>
+    <link href="https://honman.dev/posts/strangers-playing-jazz"/>
+    <id>https://honman.dev/posts/strangers-playing-jazz</id>
+    <updated>2024-11-09T00:00:00.000Z</updated>
+    <summary>Walked past a group of strangers playing jazz at a local library near where I live...</summary>
+    <content type="html">&lt;p&gt;Walked past a group of strangers playing jazz at a local library near where I live. As far as I can tell most of them are amateurs, but seeing people &lt;em&gt;making&lt;/em&gt; something out in the physical world is delightful and magical.&lt;/p&gt;
+&lt;p&gt;Also, thank you for playing some of my favourite standards! I wonder if they will be there every week...&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Your sunny-side up may not be my sunny-side up</title>
+    <link href="https://honman.dev/posts/your-sunny-side-up-may-not-be-my-sunny-side-up"/>
+    <id>https://honman.dev/posts/your-sunny-side-up-may-not-be-my-sunny-side-up</id>
+    <updated>2024-11-08T00:00:00.000Z</updated>
+    <summary>A few days ago, I made sunny-side up for some friends I&apos;ve known for a while for the first time...</summary>
+    <content type="html">&lt;p&gt;A few days ago, I made sunny-side up for some friends I&apos;ve known for a while for the first time.&lt;/p&gt;
+&lt;p&gt;One of them commented on how good the sunny-side up I made looked. I was confused for the moment because I would usually be slightly upset if my sunny-side ups looked anything less than what I made.&lt;/p&gt;
+&lt;p&gt;It turns out that her family doesn&apos;t eat a lot of eggs for, what she pointed out herself, irrational reasons. The fact that I was a bit surprised that reminded me that I should always consider that what&apos;s &lt;em&gt;normal&lt;/em&gt; to me may not be &lt;em&gt;normal&lt;/em&gt; to someone else.&lt;/p&gt;
+&lt;p&gt;I also discovered that some people are against cooking with extra virgin olive oil (EVOO). I was also confused because EVOO is quite stable and fried eggs actually taste better with (extra virgin) olive oil in my opinion. Controlling heat well is a must for any cooking: if you have a look at the smoke point for EVOO and those the proteins and egg yolks and egg whites denature at, it should be pretty clear that it&apos;s totally fine to use EVOO provided that you are controlling heat well.&lt;/p&gt;
+&lt;p&gt;I suppose my sunny-side up isn&apos;t everyone else&apos;s sunny-side up!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Unwritten rules are still rules</title>
+    <link href="https://honman.dev/posts/unwritten-rules-are-still-rules"/>
+    <id>https://honman.dev/posts/unwritten-rules-are-still-rules</id>
+    <updated>2024-11-07T00:00:00.000Z</updated>
+    <summary>When it&apos;s your turn, return a favour, give a gift, make a donation, buy the next round, travel the extra mile...</summary>
+    <content type="html">&lt;p&gt;Some rules are unwritten and emerge naturally over time when people interact with each other. For examples, social norms are often unwritten rules because writing them down would diminish the experience otherwise.&lt;/p&gt;
+&lt;p&gt;Just those rules they are unwritten doesn&apos;t mean you can bend them or conveniently forgotten about them every time. When it&apos;s your turn, return a favour, give a gift, make a donation, buy the next round, travel the extra mile, and so on; otherwise, don&apos;t be surprised that nobody wants to be in your game anymore.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Losing deliberately</title>
+    <link href="https://honman.dev/posts/losing-deliberately"/>
+    <id>https://honman.dev/posts/losing-deliberately</id>
+    <updated>2024-11-06T00:00:00.000Z</updated>
+    <summary>When I was younger, I noticed that losing in games, especially over and over again, could be an unpleasant experience for some people...</summary>
+    <content type="html">&lt;p&gt;When I was younger, I noticed that losing in games, especially over and over again, could be an unpleasant experience for some people — and they don&apos;t react well in those situations. So, at some point, I started losing deliberately at games that I was good at because I was afraid that people might stop playing with me.&lt;/p&gt;
+&lt;p&gt;Over time, the act of losing deliberately became more &lt;em&gt;refined&lt;/em&gt;. For games that I&apos;m statistically a lot better at than those I play with, I&apos;d teeter on the edge of barely losing and just winning to create tension and a false sense of competitiveness — all so that I didn&apos;t have to deal with people reacting badly to losing. Unfortunately, for games that I&apos;m new to or not very good at, I would also not take them seriously for similar reasons.&lt;/p&gt;
+&lt;p&gt;What I &lt;em&gt;didn&apos;t know&lt;/em&gt; and should have realised sooner was that people who always react badly to losing games are called sore losers, and the best thing to do with them is simply to not play with them again; otherwise, &lt;em&gt;everyone&lt;/em&gt; loses in the long run.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Your identity isn&apos;t who someone else is</title>
+    <link href="https://honman.dev/posts/your-identity-isn-t-who-someone-else-is"/>
+    <id>https://honman.dev/posts/your-identity-isn-t-who-someone-else-is</id>
+    <updated>2024-11-05T00:00:00.000Z</updated>
+    <summary>Your identity is who _you_ are, not whom you are affiliated with...</summary>
+    <content type="html">&lt;p&gt;Your identity is who &lt;em&gt;you&lt;/em&gt; are, not whom you are affiliated with.&lt;/p&gt;
+&lt;p&gt;Your famous employer isn&apos;t you; your wealthy family isn&apos;t you; your powerful friends aren&apos;t you; your prodigious children aren&apos;t you.&lt;/p&gt;
+&lt;p&gt;When you use those as proxies for who you are, what you are really doing is asking people to care about your affiliations, not &lt;em&gt;you&lt;/em&gt;: you are actually eroding your identity instead of strengthening it.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Yours, someone else&apos;s, or both?</title>
+    <link href="https://honman.dev/posts/yours-someone-else-s-or-both"/>
+    <id>https://honman.dev/posts/yours-someone-else-s-or-both</id>
+    <updated>2024-11-04T00:00:00.000Z</updated>
+    <summary>For yourself, for someone else&apos;s, or both?</summary>
+    <content type="html">&lt;p&gt;Is the thing that you spend most of your waking moments doing for yourself, for someone else&apos;s, or both?&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Shiisa and sunshine</title>
+    <link href="https://honman.dev/posts/shiisa-and-sunshine"/>
+    <id>https://honman.dev/posts/shiisa-and-sunshine</id>
+    <updated>2024-11-03T00:00:00.000Z</updated>
+    <summary>Shiisa and sunshine</summary>
+    <content type="html">&lt;p&gt;&lt;em&gt;Shiisa and sunshine&lt;/em&gt;&lt;br&gt;&lt;em&gt;Good times in Okinawa&lt;/em&gt;&lt;br&gt;&lt;em&gt;Would love to go back&lt;/em&gt;&lt;/p&gt;
+</content>
+  </entry>
+</feed>

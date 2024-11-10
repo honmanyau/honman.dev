@@ -30,6 +30,7 @@
 		"$std/": "https://deno.land/std@0.216.0/",
 		"@/": "./",
 		"@deno/kv-oauth": "jsr:@deno/kv-oauth@^0.11.0",
+		"@feed/feed": "jsr:@feed/feed@^1.1.0",
 		"@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
 		"@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
 		"@std/expect": "jsr:@std/expect@^1.0.5",
