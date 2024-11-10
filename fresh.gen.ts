@@ -8,6 +8,7 @@ import * as $_layout from "./routes/_layout.tsx";
 import * as $api_posts_protected_middleware from "./routes/api/posts/(protected)/_middleware.ts";
 import * as $api_posts_protected_delete_all from "./routes/api/posts/(protected)/delete-all.ts";
 import * as $api_posts_delete from "./routes/api/posts/delete.ts";
+import * as $blog_permalink_ from "./routes/blog/[permalink].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $shikwasa_middleware from "./routes/shikwasa/_middleware.ts";
 import * as $shikwasa_create from "./routes/shikwasa/create.tsx";
@@ -17,6 +18,7 @@ import * as $shikwasa_index from "./routes/shikwasa/index.tsx";
 import * as $shikwasa_markdowns from "./routes/shikwasa/markdowns.tsx";
 import * as $BentoColorSchemeToggle from "./islands/BentoColorSchemeToggle.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $Head from "./islands/Head.tsx";
 import * as $PostForm from "./islands/PostForm.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -30,6 +32,7 @@ const manifest = {
 		"./routes/api/posts/(protected)/delete-all.ts":
 			$api_posts_protected_delete_all,
 		"./routes/api/posts/delete.ts": $api_posts_delete,
+		"./routes/blog/[permalink].tsx": $blog_permalink_,
 		"./routes/index.tsx": $index,
 		"./routes/shikwasa/_middleware.ts": $shikwasa_middleware,
 		"./routes/shikwasa/create.tsx": $shikwasa_create,
@@ -41,6 +44,7 @@ const manifest = {
 	islands: {
 		"./islands/BentoColorSchemeToggle.tsx": $BentoColorSchemeToggle,
 		"./islands/Counter.tsx": $Counter,
+		"./islands/Head.tsx": $Head,
 		"./islands/PostForm.tsx": $PostForm,
 	},
 	baseUrl: import.meta.url,

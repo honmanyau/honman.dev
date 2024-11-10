@@ -370,6 +370,10 @@ video {
     }
 }
 
+.bento-area-blog-post {
+    grid-column: 5 / span 8;
+}
+
 article {
     font-family: var(--system-serif);
 }

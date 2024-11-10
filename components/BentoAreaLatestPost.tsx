@@ -1,16 +1,13 @@
 import type { Post } from "@/db/schema/post.ts";
 
+import { makePostContentHtml } from "@/utils/blog.ts";
+
 interface Props {
     post: Post;
 }
 
 export default function BentoAreaLatestPost(props: Props) {
-    const { title, date } = props.post;
-    const contentHtml =
-        `<h2>${title}</h2><div class="post-info"><time datetime=${
-            new Date().toISOString().split("T")[0]
-        }>${date}</time></div>` +
-        props.post.contentHtml;
+    const contentHtml = makePostContentHtml(props.post);
 
     return (
         <div class="bento-area-latest-post bento-item">
