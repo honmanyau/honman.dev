@@ -429,7 +429,7 @@ video {
     }
 }
 
-.bento {
+.bento-box {
     display: grid;
     grid-template-columns: repeat(var(--columns, auto-fill), var(--bento-unit));
     grid-auto-rows: var(--bento-unit);
