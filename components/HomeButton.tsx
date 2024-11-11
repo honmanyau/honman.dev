@@ -3,6 +3,8 @@ import type { JSX } from "preact";
 export default function HomeButton(
     props: JSX.HTMLAttributes<HTMLButtonElement>,
 ) {
+    if (props.disabled) return null;
+
     const style = { gridColumn: "-2 / span 1", gridRow: "2" };
 
     return (
