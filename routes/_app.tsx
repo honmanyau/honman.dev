@@ -2,7 +2,7 @@ import { type PageProps } from "$fresh/server.ts";
 
 export default function App(props: PageProps) {
 	return (
-		<html>
+		<html lang="en">
 			<head>
 				<meta charset="utf-8" />
 				<meta
