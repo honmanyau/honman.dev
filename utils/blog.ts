@@ -2,10 +2,8 @@ import { type Post } from "@/db/schema/post.ts";
 
 export function makePostContentHtml(post: Post) {
     const { title, date, permalink } = post;
-    const headingHtml = `<h2><a href="/posts/${permalink}">${title}</a></h2>`;
-    const datetimeHtml = `<div class="post-info"><time datetime=${
-        new Date().toISOString().split("T")[0]
-    }>${date}</time></div>`;
+    const headingHtml = makeTitleHtml(permalink, title);
+    const datetimeHtml = makeDatetimeHtml(date);
 
     return headingHtml + datetimeHtml + post.contentHtml;
 }
@@ -15,14 +13,22 @@ export function makeShortPostPreview(
     options: { includeDescription: boolean } = { includeDescription: false },
 ) {
     const { title, date, permalink } = post;
-    const headingHtml = `<h2><a href="/posts/${permalink}">${title}</a></h2>`;
-    const datetimeHtml = `<div class="post-info"><time datetime=${
-        new Date().toISOString().split("T")[0]
-    }>${date}</time></div>`;
+    const headingHtml = makeTitleHtml(permalink, title);
+    const datetimeHtml = makeDatetimeHtml(date);
 
     if (!options.includeDescription) return headingHtml + datetimeHtml;
 
     const descriptionHtml = `<p><i>${post.description}</i></p>`;
 
     return headingHtml + datetimeHtml + descriptionHtml;
+}
+
+function makeTitleHtml(permalink: string, title: string) {
+    return `<h1><a href="/posts/${permalink}">${title}</a></h1>`;
+}
+
+function makeDatetimeHtml(date: string) {
+    return `<div class="post-info"><time datetime=${
+        new Date(date).toISOString().split("T")[0]
+    }>${date}</time></div>`;
 }
