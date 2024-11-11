@@ -1,6 +1,6 @@
 import { Handlers, type RouteContext } from "$fresh/server.ts";
 
-import { createPost, createStaticPost } from "@/db/repository/post.ts";
+import { createStaticPost, upsertPost } from "@/db/repository/post.ts";
 import { type Post, PostSchema } from "@/db/schema/post.ts";
 import { getRequiredFormValue } from "@/utils/form.ts";
 import { marked, sanitizeHtml } from "@/utils/input-processing.ts";
@@ -23,7 +23,7 @@ export const handler: Handlers = {
 			const withinDenoKvSizeLimit = byteSize < 64E3;
 
 			if (withinDenoKvSizeLimit) {
-				await createPost(entry);
+				await upsertPost(entry);
 			} else {
 				await createStaticPost(PostSchema.parse(entry));
 			}
