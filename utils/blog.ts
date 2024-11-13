@@ -13,7 +13,9 @@ export function makeShortPostPreview(
     options: { includeDescription: boolean } = { includeDescription: false },
 ) {
     const { title, date, permalink } = post;
-    const headingHtml = makeTitleHtml(permalink, title);
+    const headingHtml = makeTitleHtml(permalink, title, {
+        headingIsLink: true,
+    });
     const datetimeHtml = makeDatetimeHtml(date);
 
     if (!options.includeDescription) return headingHtml + datetimeHtml;
@@ -23,8 +25,16 @@ export function makeShortPostPreview(
     return headingHtml + datetimeHtml + descriptionHtml;
 }
 
-function makeTitleHtml(permalink: string, title: string) {
-    return `<h1><a href="/posts/${permalink}">${title}</a></h1>`;
+function makeTitleHtml(
+    permalink: string,
+    title: string,
+    options: { headingIsLink: boolean } = { headingIsLink: false },
+) {
+    const headingContent = options.headingIsLink
+        ? `<a href="/posts/${permalink}">${title}</a>`
+        : title;
+
+    return `<h1>${headingContent}</h1>`;
 }
 
 function makeDatetimeHtml(date: string) {

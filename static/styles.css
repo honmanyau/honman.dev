@@ -37,8 +37,8 @@
         P052, serif;
 
     /* Font sizes */
-    --font-info: calc(var(--font-base) * 15 / 18);
-    --font-code-bock: calc(var(--font-base) * 16 / 18);
+    --font-info: 18px;
+    --font-code-bock: 18px;
 
     --font-xs: 0.5rem;
     --font-sm: 0.75rem;
@@ -177,34 +177,31 @@ form {
 h1 {
     font-size: var(--font-xxl);
     line-height: var(--line-height-font-xxl);
+    margin-top: calc(1rem * var(--line-height-font-xxl));
 }
 
 h2 {
     font-size: var(--font-xl);
     line-height: var(--line-height-font-xl);
+    margin-top: calc(1rem * var(--line-height-font-xl));
 }
 
 h3 {
     font-size: var(--font-lg);
     line-height: var(--line-height-font-lg);
+    margin-top: calc(1rem * var(--line-height-font-lg));
 }
 
 h4 {
     font-size: var(--font-base);
     line-height: var(--line-height-font-base);
+    margin-top: calc(1rem * var(--line-height-font-base));
 }
 
 h5 {
     font-size: var(--font-sm);
     line-height: var(--line-height-font-sm);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-    margin-top: var(--standard-content-padding);
+    margin-top: calc(1rem * var(--line-height-font-sm));
 }
 
 .no-margin {
@@ -234,16 +231,9 @@ a {
     }
 }
 
-h1 > a,
-h2 > a,
-h3 > a,
-h4 > a,
-h5 > a {
-    text-decoration: none;
-}
-
 pre {
     font-size: var(--font-code-bock);
+    margin-top: var(--standard-content-padding);
 }
 
 code {
@@ -443,7 +433,7 @@ video {
 
 .latest-posts {
     & > *:not(:last-child) {
-        margin-bottom: var(--standard-content-padding);
+        margin-bottom: calc(2 * var(--standard-content-padding));
     }
 
     h1 {
@@ -481,9 +471,12 @@ video {
     }
 }
 
-/**
- * Content
- */
+.post-preview {
+    h1 {
+        font-size: var(--font-lg);
+    }
+}
+
 .post-info {
     font-size: var(--font-info);
     color: var(--font-color-time-light);

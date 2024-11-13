@@ -18,13 +18,13 @@ export default function BentoAreaLatestPost(props: Props) {
             >
             </article>
             {recentPosts.map((post) => (
-                <section
-                    class="post"
+                <div
+                    class="post post-preview"
                     dangerouslySetInnerHTML={{
                         __html: makeShortPostPreview(post),
                     }}
                 >
-                </section>
+                </div>
             ))}
             <a href="/posts">See all posts</a>
         </div>
