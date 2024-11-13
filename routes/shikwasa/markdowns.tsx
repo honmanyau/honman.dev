@@ -65,7 +65,7 @@ function getFrontmatter(text: string) {
         frontmatter[matched[1]] = matched[2].replace(/^"/, "").replace(
             /"$/,
             "",
-        ).replace(/^\\"/, '"').replace(/\\"$/, '"');
+        ).replace(/\\"/g, '"');
     }
 
     return frontmatter;
