@@ -59,7 +59,6 @@ export function PostForm(props: Props) {
                     type="text"
                     name="description"
                     value={props.post?.description}
-                    onInput={handleTitleChange}
                 />
             </p>
             <p>
