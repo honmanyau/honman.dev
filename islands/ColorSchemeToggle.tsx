@@ -9,7 +9,6 @@ export default function ColorSchemeToggle() {
 
     const mode = useSignal(globalThis.snowbell?.colorMode || ColorMode.LIGHT);
     const iconClass = mode.value && getCssIconClass(mode.value);
-    const style = { gridColumn: "-2 / span 1", gridRow: "1" };
     const title = `Toggle to ${
         mode.value === ColorMode.LIGHT ? "dark" : "light"
     } mode.`;
@@ -24,15 +23,13 @@ export default function ColorSchemeToggle() {
     };
 
     return (
-        <div class="bento-item bento-item-icon" style={style}>
-            <button
-                class="bento-icon"
-                onClick={toggleColorMode}
-                title={title}
-            >
-                <span class={`icon--material-symbols ${iconClass}`}></span>
-            </button>
-        </div>
+        <button
+            class="bento-icon"
+            onClick={toggleColorMode}
+            title={title}
+        >
+            <span class={`icon--material-symbols ${iconClass}`}></span>
+        </button>
     );
 }
 

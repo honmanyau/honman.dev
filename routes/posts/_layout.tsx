@@ -8,10 +8,9 @@ export default function Layout({ Component }: PageProps) {
         <main class="post-page-layout">
             <div></div>
             <Component />
-            <div class="post-page-layout-right bento-box">
+            <div class="side-controls bento-item">
                 <HomeButton />
                 <ColorSchemeToggle />
-                {/* <SocialIcons /> */}
             </div>
         </main>
     );

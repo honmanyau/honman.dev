@@ -5,7 +5,7 @@ export default function SocialIcons() {
 
     return (
         <>
-            <div class="bento-item bento-item-icon" style={gitHubStyle}>
+            <div class="bento-item" style={gitHubStyle}>
                 <a
                     class="bento-icon"
                     target="_blank"
@@ -16,7 +16,7 @@ export default function SocialIcons() {
                     </span>
                 </a>
             </div>
-            <div class="bento-item bento-item-icon" style={linkedInStyle}>
+            <div class="bento-item" style={linkedInStyle}>
                 <a
                     class="bento-icon"
                     target="_blank"
@@ -27,7 +27,7 @@ export default function SocialIcons() {
                     </span>
                 </a>
             </div>
-            <div class="bento-item bento-item-icon" style={rssStyle}>
+            <div class="bento-item" style={rssStyle}>
                 <a
                     class="bento-icon"
                     href="/feed.xml"

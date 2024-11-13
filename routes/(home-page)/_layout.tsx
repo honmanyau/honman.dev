@@ -7,10 +7,7 @@ export default function Layout({ Component }: PageProps) {
     return (
         <main class="home-page-layout">
             <Component />
-            <div
-                class="home-page-layout-right bento-box"
-                style={{ "--columns": 1 }}
-            >
+            <div class="side-controls bento-item">
                 <HomeButton disabled />
                 <ColorSchemeToggle />
             </div>
