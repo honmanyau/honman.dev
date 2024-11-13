@@ -17,12 +17,13 @@ export default async function Home(_req: Request, _ctx: RouteContext) {
             />
             <main class="latest-posts bento-item">
                 {posts.map((post) => (
-                    <section
+                    <div
+                        class="post post-preview"
                         dangerouslySetInnerHTML={{
                             __html: makeShortPostPreview(post),
                         }}
                     >
-                    </section>
+                    </div>
                 ))}
             </main>
         </>
