@@ -23,8 +23,6 @@ export default {
 					payload.tokens.accessToken,
 				);
 
-				console.log("AYA: id", id, username);
-
 				if (!(String(id) === "22585758" && username === "honmanyau")) {
 					return new Response("Unauthorized", { status: 401 });
 				}
