@@ -481,7 +481,7 @@ video {
 .post-info {
     font-size: var(--font-info);
     color: var(--font-color-time-light);
-    margin: calc(1.5 * var(--grid-base-unit)) 0;
+    margin: calc(2 * var(--grid-base-unit)) 0;
 
     & time {
         font-weight: bold;
