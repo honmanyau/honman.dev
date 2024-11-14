@@ -211,13 +211,14 @@ h5 {
 p {
     font-size: var(--font-base);
     line-height: var(--line-height-font-base);
-    margin-top: var(--standard-content-padding);
+    margin-top: calc(1rem * var(--line-height-font-base));
 }
 
 ul,
 ol {
     font-size: var(--font-base);
     line-height: var(--line-height-font-base);
+    margin-top: var(--standard-content-padding);
 }
 
 a {
