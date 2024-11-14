@@ -14,6 +14,8 @@ export default async function Shikwasa(_req: Request, _ctx: RouteContext) {
 			</head>
 
 			<main style="font-family: monospace">
+				<a href="/">Home</a>
+
 				<ul>
 					{posts.map(makeListItem)}
 				</ul>
