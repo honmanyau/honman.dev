@@ -3,12 +3,81 @@
   <title>honman.dev</title>
   <subtitle>Honman&apos;s canvas and laboratory on the Internet.</subtitle>
   <link rel="alternate" href="https://honman.dev/feed"/>
-  <updated>2024-11-10T10:40:29.767Z</updated>
+  <updated>2024-11-14T12:57:34.835Z</updated>
   <generator>Feed for Deno</generator>
   <author>
     <name>Honman Yau</name>
     <email>not.delivered@honman.dev</email>
   </author>
+  <entry>
+    <title>Deno 2 site is up!</title>
+    <link href="https://honman.dev/posts/deno-2-site-is-up"/>
+    <id>https://honman.dev/posts/deno-2-site-is-up</id>
+    <updated>2024-11-14T00:00:00.000Z</updated>
+    <summary>I had a lot of fun re-building this site for third time.</summary>
+    <content type="html">&lt;p&gt;Following from yesterday&apos;s post: I have just finished re-building this website for the third time (or fourth if you count the Svelte rewrite than I never ended up deploying) and I had a lot of fun!&lt;/p&gt;
+&lt;p&gt;This post is the first one I&apos;ve ever posted on this website that doesn&apos;t require a build step, all powered by a crappy &quot;CMS&quot; that I hacked together using Deno KV. 🎉&lt;/p&gt;
+&lt;p&gt;I&apos;d already commented on Deno and Fresh yesterday, and I can also now say using Deno Deploy is a fantastic user experience. Granted, this website is a small personal site and has no sophisticated build steps, so time will tell as the ecosystem continues to grow and improve. I&apos;m currently on the free tier and here are some Deno Deploy usage stats:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;418 / 1000000 requests&lt;/li&gt;
+&lt;li&gt;~1 MiB / 100 GiB bandwidth&lt;/li&gt;
+&lt;li&gt;~1700 / 450000 Deno KV read units&lt;/li&gt;
+&lt;li&gt;~300 / 30000 Deno KV write units&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Deno KV writes is at ~300 because I&apos;m storing posts with Deno KV and I had to migrate markdown posts from the previous, Nuxt static site and accidentally did it twice.&lt;/p&gt;
+&lt;p&gt;I was initially confused by the number of reads but I&apos;d forgotten that the pricing page does specify up to 4KiB per unit, which would make sense since I do have a few call sites that fetch all blog posts (currently ~120 KiB).&lt;/p&gt;
+&lt;p&gt;For a personal website like this, where I arguably don&apos;t need to store things on the edge, those stats on reads feel expansive. Having said that that, Deno does have a Cache API that&apos;s currently free and in beta; I&apos;ll collect stats for a couple of days and optimise with the Cache API then.&lt;/p&gt;
+&lt;p&gt;Will likely write more about this later, especially when I try Deno Deploy with larger projects.&lt;/p&gt;
+&lt;p&gt;As an aside, I &lt;em&gt;feel&lt;/em&gt; that this version of the website has been the easiest to optimise Lighthouse scores because of the fantastic tooling.&lt;/p&gt;
+&lt;p&gt;Also, hi mom, and happy birthday!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Rewrite with Deno/Fresh mostly done!</title>
+    <link href="https://honman.dev/posts/rewrite-with-deno-fresh-mostly-done"/>
+    <id>https://honman.dev/posts/rewrite-with-deno-fresh-mostly-done</id>
+    <updated>2024-11-13T00:00:00.000Z</updated>
+    <summary>I was hoping to deploy today and point DNS to a Deno Deploy instance but ended up fussing over small details here and there...</summary>
+    <content type="html">&lt;p&gt;I was hoping to deploy today and point DNS to a Deno Deploy instance. I ended up fussing over small details here and there because I don&apos;t plan to rewrite with another framework anytime soon.&lt;/p&gt;
+&lt;p&gt;The structure that Fresh mandates makes sense to me. I was able to develop a deeper understanding and be comfortably productive compared to other frameworks in a similar amount of time. It also doesn&apos;t make me feel like I&apos;m constantly tiptoeing the blurred line between client and server. Take this with a grain of salt, they are just personal preferences.&lt;/p&gt;
+&lt;p&gt;Also, check out &lt;a href=&quot;https://www.youtube.com/watch?v=2x2eIhn2BJM&quot;&gt;this interview&lt;/a&gt; with Ryan Dahl on ThePrimeTime. Lots of great stuff in it for engineers of all levels. I&apos;m also super biased because it&apos;s Ryan Dahl.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Questioning \&quot;conventional wisdom&quot;</title>
+    <link href="https://honman.dev/posts/questioning-conventional-wisdom"/>
+    <id>https://honman.dev/posts/questioning-conventional-wisdom</id>
+    <updated>2024-11-12T00:00:00.000Z</updated>
+    <summary>Conventional wisdom is the generally accepted way of doing things.</summary>
+    <content type="html">&lt;p&gt;Sometimes experienced, well-meaning people offer &quot;conventional wisdom&quot; in a landscape that&apos;s rapidly changing or about to become so.&lt;/p&gt;
+&lt;p&gt;If you recognise that the landscape is indeed in flux, you should carefully question any &quot;conventional wisdom&quot; you receive lest you miss the opportunity to prepare yourself for important things.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>JamCorder is super cool</title>
+    <link href="https://honman.dev/posts/jam-corder-is-super-cool"/>
+    <id>https://honman.dev/posts/jam-corder-is-super-cool</id>
+    <updated>2024-11-11T00:00:00.000Z</updated>
+    <summary>I was feeling uninspired and came across the release of a product called JamCorder...</summary>
+    <content type="html">&lt;p&gt;I was feeling suer uninspired and came across the release of a product called JamCorder (&lt;a href=&quot;https://jamcorder.com&quot;&gt;website&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;If you&apos;re musically trained you&apos;ll probably appreciate it a lot — I would have instantly purchased it if I had a digital piano. If anything, JamCorder makes me want to buy a digital piano &lt;em&gt;now&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;It&apos;s also an super awesome how well the idea is executed and marketed (see the introduction video here: &lt;a href=&quot;https://www.youtube.com/watch?v=1Cjy-zFcUtQ&quot;&gt;https://www.youtube.com/watch?v=1Cjy-zFcUtQ&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Am feeling inspired again.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>We can avoid butchering names</title>
+    <link href="https://honman.dev/posts/we-can-avoid-butchering-names"/>
+    <id>https://honman.dev/posts/we-can-avoid-butchering-names</id>
+    <updated>2024-11-10T00:00:00.000Z</updated>
+    <summary>Some people have the tendency to say \&quot;I&apos;m about to butcher this name\&quot; before saying a name that they are not familiar with...</summary>
+    <content type="html">&lt;p&gt;Some people have the tendency to say &quot;I&apos;m about to butcher this name&quot; before saying a name that they are not familiar with. I came across that three times in podcast interviews in just a week — in one case I know the interviewer had said that in other interviews, too.&lt;/p&gt;
+&lt;p&gt;It makes perfect sense if you have to do it unrehearsed. However, it makes absolutely no sense to say that when you had plenty of time to prepare.&lt;/p&gt;
+&lt;p&gt;If you have given getting it right a good go and still can&apos;t get it, that&apos;s totally fine! In fact, &quot;Is this how you say your name...&quot; is a great way to start a conversation properly while showing that you respect the person you are interviewing and have tried.&lt;/p&gt;
+&lt;p&gt;It&apos;s easier than ever to find out how to say someone&apos;s name properly, so when you say &quot;I&apos;m about to butcher a name&quot; again and again, what you really are saying is that you don&apos;t care enough to try.&lt;/p&gt;
+&lt;p&gt;Stop saying that you&apos;re butchering names if you do try, and start trying if you don&apos;t already.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Strangers playing jazz</title>
     <link href="https://honman.dev/posts/strangers-playing-jazz"/>
@@ -30,56 +99,6 @@
 &lt;p&gt;It turns out that her family doesn&apos;t eat a lot of eggs for, what she pointed out herself, irrational reasons. The fact that I was a bit surprised that reminded me that I should always consider that what&apos;s &lt;em&gt;normal&lt;/em&gt; to me may not be &lt;em&gt;normal&lt;/em&gt; to someone else.&lt;/p&gt;
 &lt;p&gt;I also discovered that some people are against cooking with extra virgin olive oil (EVOO). I was also confused because EVOO is quite stable and fried eggs actually taste better with (extra virgin) olive oil in my opinion. Controlling heat well is a must for any cooking: if you have a look at the smoke point for EVOO and those the proteins and egg yolks and egg whites denature at, it should be pretty clear that it&apos;s totally fine to use EVOO provided that you are controlling heat well.&lt;/p&gt;
 &lt;p&gt;I suppose my sunny-side up isn&apos;t everyone else&apos;s sunny-side up!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Unwritten rules are still rules</title>
-    <link href="https://honman.dev/posts/unwritten-rules-are-still-rules"/>
-    <id>https://honman.dev/posts/unwritten-rules-are-still-rules</id>
-    <updated>2024-11-07T00:00:00.000Z</updated>
-    <summary>When it&apos;s your turn, return a favour, give a gift, make a donation, buy the next round, travel the extra mile...</summary>
-    <content type="html">&lt;p&gt;Some rules are unwritten and emerge naturally over time when people interact with each other. For examples, social norms are often unwritten rules because writing them down would diminish the experience otherwise.&lt;/p&gt;
-&lt;p&gt;Just those rules they are unwritten doesn&apos;t mean you can bend them or conveniently forgotten about them every time. When it&apos;s your turn, return a favour, give a gift, make a donation, buy the next round, travel the extra mile, and so on; otherwise, don&apos;t be surprised that nobody wants to be in your game anymore.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Losing deliberately</title>
-    <link href="https://honman.dev/posts/losing-deliberately"/>
-    <id>https://honman.dev/posts/losing-deliberately</id>
-    <updated>2024-11-06T00:00:00.000Z</updated>
-    <summary>When I was younger, I noticed that losing in games, especially over and over again, could be an unpleasant experience for some people...</summary>
-    <content type="html">&lt;p&gt;When I was younger, I noticed that losing in games, especially over and over again, could be an unpleasant experience for some people — and they don&apos;t react well in those situations. So, at some point, I started losing deliberately at games that I was good at because I was afraid that people might stop playing with me.&lt;/p&gt;
-&lt;p&gt;Over time, the act of losing deliberately became more &lt;em&gt;refined&lt;/em&gt;. For games that I&apos;m statistically a lot better at than those I play with, I&apos;d teeter on the edge of barely losing and just winning to create tension and a false sense of competitiveness — all so that I didn&apos;t have to deal with people reacting badly to losing. Unfortunately, for games that I&apos;m new to or not very good at, I would also not take them seriously for similar reasons.&lt;/p&gt;
-&lt;p&gt;What I &lt;em&gt;didn&apos;t know&lt;/em&gt; and should have realised sooner was that people who always react badly to losing games are called sore losers, and the best thing to do with them is simply to not play with them again; otherwise, &lt;em&gt;everyone&lt;/em&gt; loses in the long run.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Your identity isn&apos;t who someone else is</title>
-    <link href="https://honman.dev/posts/your-identity-isn-t-who-someone-else-is"/>
-    <id>https://honman.dev/posts/your-identity-isn-t-who-someone-else-is</id>
-    <updated>2024-11-05T00:00:00.000Z</updated>
-    <summary>Your identity is who _you_ are, not whom you are affiliated with...</summary>
-    <content type="html">&lt;p&gt;Your identity is who &lt;em&gt;you&lt;/em&gt; are, not whom you are affiliated with.&lt;/p&gt;
-&lt;p&gt;Your famous employer isn&apos;t you; your wealthy family isn&apos;t you; your powerful friends aren&apos;t you; your prodigious children aren&apos;t you.&lt;/p&gt;
-&lt;p&gt;When you use those as proxies for who you are, what you are really doing is asking people to care about your affiliations, not &lt;em&gt;you&lt;/em&gt;: you are actually eroding your identity instead of strengthening it.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Yours, someone else&apos;s, or both?</title>
-    <link href="https://honman.dev/posts/yours-someone-else-s-or-both"/>
-    <id>https://honman.dev/posts/yours-someone-else-s-or-both</id>
-    <updated>2024-11-04T00:00:00.000Z</updated>
-    <summary>For yourself, for someone else&apos;s, or both?</summary>
-    <content type="html">&lt;p&gt;Is the thing that you spend most of your waking moments doing for yourself, for someone else&apos;s, or both?&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Shiisa and sunshine</title>
-    <link href="https://honman.dev/posts/shiisa-and-sunshine"/>
-    <id>https://honman.dev/posts/shiisa-and-sunshine</id>
-    <updated>2024-11-03T00:00:00.000Z</updated>
-    <summary>Shiisa and sunshine</summary>
-    <content type="html">&lt;p&gt;&lt;em&gt;Shiisa and sunshine&lt;/em&gt;&lt;br&gt;&lt;em&gt;Good times in Okinawa&lt;/em&gt;&lt;br&gt;&lt;em&gt;Would love to go back&lt;/em&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
