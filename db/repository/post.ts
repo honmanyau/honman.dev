@@ -1,4 +1,5 @@
 import { type Post, PostSchema } from "@/db/schema/post.ts";
+import { cacheKeys, get, put, remove } from "@/utils/cache.ts";
 
 const kv = await Deno.openKv();
 const POSTS_KEY = "posts";
@@ -14,7 +15,16 @@ export async function getPost(permalink: string) {
 	return post;
 }
 
-export async function indexPosts({ sort }: { sort?: "asc" | "desc" } = {}) {
+export async function indexPosts(
+	{ sort }: { sort: "asc" | "desc" } = { sort: "desc" },
+): Promise<Post[]> {
+	const cacheKey = cacheKeys.posts.index;
+	const cachedPosts = await get<Post[]>(cacheKey);
+
+	if (cachedPosts) {
+		return sortPosts(cachedPosts, sort);
+	}
+
 	const iterator = kv.list<Post>({ prefix: [POSTS_KEY] });
 	const posts = await getStaticPosts();
 
@@ -22,13 +32,11 @@ export async function indexPosts({ sort }: { sort?: "asc" | "desc" } = {}) {
 		posts.push(entry.value);
 	}
 
-	if (!sort) {
-		return posts;
-	}
+	const sortedPosts = sortPosts(posts, sort);
 
-	return sort === "desc"
-		? posts.sort((a, b) => b.date.localeCompare(a.date))
-		: posts.sort((a, b) => a.date.localeCompare(b.date));
+	await put(cacheKey, sortedPosts);
+
+	return sortedPosts;
 }
 
 export async function createPost(data: Post) {
@@ -45,27 +53,34 @@ export async function createPost(data: Post) {
 		throw new Deno.errors.AlreadyExists();
 	}
 
+	refreshIndexPostsCache();
+
 	return result;
 }
 
-export function updatePost(data: Post) {
+export async function updatePost(data: Post) {
 	const post = PostSchema.parse(data);
 	const key = [POSTS_KEY, post.permalink];
 
-	getPost(post.permalink);
+	await getPost(post.permalink);
+	await refreshIndexPostsCache();
 
 	return kv.set(key, post);
 }
 
-export function upsertPost(data: Post) {
+export async function upsertPost(data: Post) {
 	const post = PostSchema.parse(data);
 	const key = [POSTS_KEY, post.permalink];
+
+	await refreshIndexPostsCache();
 
 	return kv.set(key, post);
 }
 
 export async function deletePost(permalink: string) {
 	const key = [POSTS_KEY, permalink];
+
+	await refreshIndexPostsCache();
 
 	return kv.delete(key);
 }
@@ -78,6 +93,8 @@ export async function createStaticPost(data: Post): Promise<void> {
 			Deno.cwd() + `/static/posts/${post.permalink}.json`,
 			JSON.stringify(post),
 		);
+
+		await refreshIndexPostsCache();
 	} catch {
 		// We shouldn't be writing static files in prod (we can't with Deno
 		// on Deploy).
@@ -103,4 +120,15 @@ export async function getStaticPosts(): Promise<Post[]> {
 	}
 
 	return posts;
+}
+
+async function refreshIndexPostsCache(): Promise<void> {
+	await remove(cacheKeys.posts.index);
+	await indexPosts();
+}
+
+function sortPosts(posts: Post[], sort: "asc" | "desc") {
+	return sort === "desc"
+		? posts.sort((a, b) => b.date.localeCompare(a.date))
+		: posts.sort((a, b) => a.date.localeCompare(b.date));
 }

@@ -5,7 +5,7 @@ import Metadata from "@/components/Metadata.tsx";
 import SiteIntro from "@/components/SiteIntro.tsx";
 import { indexPosts } from "@/db/repository/post.ts";
 
-export default async function Home(_req: Request, _ctx: RouteContext) {
+export default async function Home(req: Request, _ctx: RouteContext) {
 	const posts = await indexPosts({ sort: "desc" });
 
 	return (

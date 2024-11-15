@@ -52,8 +52,6 @@ import { getFrontmatter, stripFrontmatter } from "./fix.ts";
         const contentHtml = sanitizeHtml(unsanitizedContentHtml);
         const permalink = toKebabCase(frontmatter.title);
 
-        console.log("AYA: contentHtml", contentHtml);
-
         // rssFeed.addItem({
         //     title: frontmatter.title,
         //     link: `https://honman.dev/posts/${permalink}`,
