@@ -4,8 +4,8 @@
 		"check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
 		"cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
 		"manifest": "deno task cli manifest $(pwd)",
-		"start": "GITHUB_CLIENT_ID='Ov23liZf8cmT8uyyShdK' GITHUB_CLIENT_SECRET='38e3ec8df5a11c23eaeb3aa1780ff8389899e108' deno run -A --watch=static/,routes/ --unstable-kv dev.ts",
-		"build": "GITHUB_CLIENT_ID='Ov23liZf8cmT8uyyShdK' GITHUB_CLIENT_SECRET='38e3ec8df5a11c23eaeb3aa1780ff8389899e108' deno run -A --unstable-kv dev.ts build",
+		"start": "deno run -A --watch=static/,routes/ --unstable-kv dev.ts",
+		"build": "GITHUB_CLIENT_ID='' GITHUB_CLIENT_SECRET='' deno run -A --unstable-kv dev.ts build",
 		"preview": "deno run -A main.ts",
 		"update": "deno run -A -r https://fresh.deno.dev/update ."
 	},
